@@ -45,7 +45,7 @@ export function Hero() {
                         className="text-4xl xs:text-5xl font-bold tracking-tight text-ink md:text-7xl lg:text-8xl pb-2 px-4"
                     >
                         Your Personal <br className="hidden md:block" />
-                        <span className="text-gradient">Autonomous AI Agent.</span>
+                        <span className="text-gradient">AI Coaching Agent.</span>
                     </motion.h1>
 
                     <motion.p

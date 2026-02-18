@@ -25,7 +25,7 @@ const steps = [
     {
         title: "Final Details & Context",
         description: "Add any specific constraints or notes via voice or text. Teo takes everything into account to create a truly custom plan.",
-        screenshot: "/assets/screenshots/plan_creation_final_details_voicememo_4.PNG",
+        screenshot: "/assets/screenshots/plan_creation_final_details_voice_4.PNG",
     },
 ];
 
