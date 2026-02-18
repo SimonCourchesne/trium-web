@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #F97316;
+  /* Vibrant Orange */
+  --color-action: #0F172A;
+  /* Dark Navy */
+  --color-success: #10B981;
+  /* Mint Green */
+  --color-ink: #0F172A;
+  /* Headings */
+  --color-slate: #334155;
+  /* Body */
+  --color-white: #FFFFFF;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0
+    }
+
+    to {
+      height: var(--radix-accordion-content-height)
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height)
+    }
+
+    to {
+      height: 0
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to sure everything still looks the same.
+*/
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+:root {
+  --background: #F8FAFC;
+  /* Slate-50 */
+  --foreground: #0F172A;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+@utility glass-card {
+  @apply bg-white/40 backdrop-blur-xl border border-white/40 rounded-3xl shadow-lg shadow-black/5;
+}
+
+@utility glass-panel {
+  @apply bg-white/60 backdrop-blur-md border border-white/50 shadow-sm;
+}
+
+@utility btn-action {
+  @apply bg-action text-white rounded-full px-8 py-3 font-medium shadow-xl hover:bg-slate-800 transition-all active:scale-95;
+}
+
+@utility input-glass {
+  @apply bg-white/50 border border-white/30 rounded-xl px-4 py-3 placeholder-slate-500 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/50;
+}
+
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-orange-400;
+}
+
+html {
+  scroll-behavior: smooth;
+}
