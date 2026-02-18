@@ -42,10 +42,10 @@ export function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className="text-5xl font-bold tracking-tight text-ink md:text-7xl lg:text-8xl pb-2"
+                        className="text-4xl xs:text-5xl font-bold tracking-tight text-ink md:text-7xl lg:text-8xl pb-2 px-4"
                     >
-                        Your Personal AI <br className="hidden md:block" />
-                        <span className="text-gradient">Endurance Coach.</span>
+                        Your Personal <br className="hidden md:block" />
+                        <span className="text-gradient">Autonomous AI Agent.</span>
                     </motion.h1>
 
                     <motion.p
@@ -55,7 +55,7 @@ export function Hero() {
                         className="mt-6 max-w-2xl text-lg text-slate-600 md:text-xl font-medium"
                     >
                         Adaptive training plans for Triathlon, Running, Cycling, and Swimming.
-                        Powered by advanced AI, tailored to your life.
+                        Powered by a smart AI agent with access to cutting-edge sports science and autonomous tools to modify your plan.
                     </motion.p>
 
                     <motion.div
@@ -75,7 +75,7 @@ export function Hero() {
 
                         {/* Left Phone (Calendar) */}
                         <motion.div
-                            className="absolute left-4 md:left-[10%] top-12 z-10 scale-[0.85] md:scale-90 md:hover:scale-100 transition-all duration-500 origin-bottom-right"
+                            className="absolute left-[10%] top-12 z-10 hidden md:block scale-90 hover:scale-100 transition-all duration-500 origin-bottom-right"
                             initial={{ x: -50, opacity: 0, rotate: -10 }}
                             animate={{ x: 0, opacity: 1, rotate: -10 }}
                             transition={{ duration: 0.8, delay: 0.6 }}
@@ -91,7 +91,7 @@ export function Hero() {
 
                         {/* Right Phone (Chat) */}
                         <motion.div
-                            className="absolute right-4 md:right-[10%] top-12 z-10 scale-[0.85] md:scale-90 md:hover:scale-100 transition-all duration-500 origin-bottom-left"
+                            className="absolute right-[10%] top-12 z-10 hidden md:block scale-90 hover:scale-100 transition-all duration-500 origin-bottom-left"
                             initial={{ x: 50, opacity: 0, rotate: 10 }}
                             animate={{ x: 0, opacity: 1, rotate: 10 }}
                             transition={{ duration: 0.8, delay: 0.8 }}
@@ -100,7 +100,7 @@ export function Hero() {
                                 src="/assets/screenshots/coach_chat_page.PNG"
                                 width={300}
                                 height={650}
-                                alt="AI Coach Chat"
+                                alt="Agent Coach Chat"
                                 className="shadow-2xl shadow-orange-500/10"
                             />
                         </motion.div>

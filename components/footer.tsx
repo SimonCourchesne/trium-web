@@ -15,7 +15,7 @@ export function Footer() {
                             <span className="text-xl font-bold text-ink">Teo</span>
                         </Link>
                         <p className="mt-4 text-sm text-slate-500 max-w-xs">
-                            Adaptive AI coaching for the modern athlete.
+                            Adaptive Agentic coaching for the modern athlete.
                             Train smarter, recover better, and race faster.
                         </p>
                     </div>

@@ -2,17 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-const links = [
-    { href: "#features", label: "Features" },
-    { href: "#mission", label: "Mission" },
-    { href: "#faq", label: "FAQ" },
-];
+const links: { href: string; label: string }[] = [];
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,9 +39,13 @@ export function Header() {
                 >
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center">
-                            <span className="text-white font-bold text-lg">T</span>
-                        </div>
+                        <Image
+                            src="/assets/screenshots/icon_backup.png"
+                            alt="Teo"
+                            width={32}
+                            height={32}
+                            className="rounded-lg"
+                        />
                         <span className="text-xl font-bold text-ink">
                             Teo
                         </span>
@@ -84,7 +85,7 @@ export function Header() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-24 left-4 right-4 rounded-3xl bg-white/90 backdrop-blur-xl border border-white/40 shadow-xl p-6 md:hidden"
+                        className="absolute top-20 left-4 right-4 rounded-3xl bg-white/90 backdrop-blur-xl border border-white/40 shadow-xl p-6 md:hidden"
                     >
                         <div className="flex flex-col gap-4">
                             {links.map((link) => (

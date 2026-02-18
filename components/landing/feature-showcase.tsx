@@ -11,14 +11,14 @@ const features = [
     {
         title: "Plans That Adapt To You",
         description:
-            "Life happens. Missed a workout? Sick? Busy work week? Teo instantly recalculates your entire season to keep you on track without burnout.",
+            "Life happens. Missed a workout? Sick? Busy work week? Teo autonomously recalculates your entire season to keep you on track without burnout.",
         icon: Calendar,
-        screenshot: "/assets/screenshots/plan_creation_weekly_schedule_2.PNG",
+        screenshot: "/assets/screenshots/calendar_page.PNG",
     },
     {
         title: "24/7 Expert Guidance",
         description:
-            "Chat with your AI coach anytime. Ask for advice on nutrition, race strategy, or gear. It knows your training history and physiology.",
+            "Chat with your Agent coach anytime. Access cutting-edge sports science advice on nutrition, race strategy, or gear. It knows your training history and physiology.",
         icon: MessageSquare,
         screenshot: "/assets/screenshots/coach_chat_page.PNG",
     },
@@ -48,7 +48,7 @@ export function FeatureShowcase() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6 bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">
+                        <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">
                             Train Smart.
                         </h2>
                         <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto font-light">
@@ -58,12 +58,12 @@ export function FeatureShowcase() {
                 </Container>
             </div>
 
-            {/* Increased height to 400vh to slow down scrolling and ensure text matches image */}
-            <div ref={containerRef} className="relative h-[400vh]">
+            {/* Desktop Version - Sticky Scroll */}
+            <div ref={containerRef} className="hidden md:block relative h-[400vh]">
                 <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
                     <div className="relative w-full max-w-7xl px-4 flex items-center justify-center h-full">
                         {/* Phone Container */}
-                        <div className="relative w-[300px] h-[650px] md:w-[320px] md:h-[680px] max-h-[80vh] flex items-center justify-center">
+                        <div className="relative w-[320px] h-[680px] max-h-[80vh] flex items-center justify-center">
                             {features.map((feature, index) => (
                                 <FeatureImage
                                     key={index}
@@ -87,6 +87,32 @@ export function FeatureShowcase() {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            {/* Mobile Version - Simple Stack */}
+            <div className="md:hidden flex flex-col gap-20 pb-24 px-4 overflow-hidden">
+                {features.map((feature, index) => (
+                    <div key={index} className="flex flex-col items-center">
+                        <div className="w-full mb-12">
+                            <ContentCard feature={feature} align="left" />
+                        </div>
+                        <div className="relative w-[280px] h-[580px]">
+                            <motion.div
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                            >
+                                <Iphone15Pro
+                                    src={feature.screenshot}
+                                    width={280}
+                                    height={580}
+                                    className="shadow-2xl shadow-blue-500/20"
+                                />
+                            </motion.div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </section>
     );

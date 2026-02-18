@@ -15,11 +15,11 @@ export function SocialProof() {
                         <p className="text-sm font-medium text-slate-400 uppercase tracking-wider">
                             Syncs Seamlessly with
                         </p>
-                        <div className="flex items-center gap-8 opacity-60 grayscale transition-all hover:grayscale-0 hover:opacity-100">
+                        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 opacity-60 grayscale transition-all hover:grayscale-0 hover:opacity-100">
                             {/* Simple Text Logos for now - Darker for Light Mode */}
                             <span className="text-xl font-bold italic tracking-tighter text-slate-700">STRAVA</span>
                             <span className="text-xl font-bold tracking-tight text-slate-700">GARMIN</span>
-                            <span className="text-xl font-bold text-slate-700">TrainingPeaks</span>
+                            <span className="text-xl font-bold text-slate-700 whitespace-nowrap">TrainingPeaks</span>
                         </div>
                     </div>
                 </div>

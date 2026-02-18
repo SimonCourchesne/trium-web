@@ -7,15 +7,15 @@ import { cn } from "@/lib/utils";
 
 const features = [
     {
-        title: "Proactive Check-ins",
-        description: "It texts you to check in. It knows when you missed a workout and asks why, just like a real coach.",
+        title: "Proactive AI Agent",
+        description: "Teo texts you to check in. It knows when you missed a workout and asks why, just like a real coach.",
         icon: MessageSquare,
         className: "md:col-span-2",
         gradient: "from-blue-500/20 to-cyan-500/20"
     },
     {
         title: "True Adaptation",
-        description: "Adjusts intensity based on RPE and life events. Not just a spreadsheet.",
+        description: "Uses autonomous tools to adjust intensity based on RPE and life events. Not just a spreadsheet.",
         icon: Zap,
         className: "md:col-span-1",
         gradient: "from-orange-500/20 to-amber-500/20"

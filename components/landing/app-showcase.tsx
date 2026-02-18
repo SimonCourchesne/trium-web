@@ -6,13 +6,11 @@ import { Iphone15Pro } from "@/components/ui/iphone-15-pro";
 import { motion } from "framer-motion";
 
 const screenshots = [
-    "/assets/screenshots/plan_creation_plan_basics_1.PNG",
-    "/assets/screenshots/plan_creation_weekly_schedule_2.PNG",
-    "/assets/screenshots/plan_creation_race_calendar_3.PNG",
-    "/assets/screenshots/plan_creation_final_details_voicememo_4.PNG",
-    "/assets/screenshots/settings_page.PNG",
-    "/assets/screenshots/settings_coach_personality_choice.PNG",
+    "/assets/screenshots/home_page.PNG",
+    "/assets/screenshots/calendar_page.PNG",
     "/assets/screenshots/workout_details_card.PNG",
+    "/assets/screenshots/you_page.PNG",
+    "/assets/screenshots/settings_page.PNG",
 ];
 
 export function AppShowcase() {
@@ -34,7 +32,7 @@ export function AppShowcase() {
             {/* Scrollable Container with Mask Fade - Replaces harsh gradients with smooth mask */}
             <div
                 ref={scrollContainerRef}
-                className="flex items-start overflow-x-auto snap-x snap-mandatory pb-12 pt-4 px-8 md:px-[max(calc(50vw-45rem),2rem)] gap-8 md:gap-12 scrollbar-none [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+                className="flex items-start overflow-x-auto snap-x snap-mandatory pb-12 pt-8 px-6 md:px-[max(calc(50vw-45rem),2rem)] gap-6 md:gap-12 scrollbar-none [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] md:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
                 {screenshots.map((src, index) => (

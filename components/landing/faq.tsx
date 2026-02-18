@@ -14,7 +14,7 @@ const faqSections = [
         faqs: [
             {
                 question: "What is Teo?",
-                answer: "Teo is an AI-powered endurance coaching app designed for triathletes, runners, cyclists, and swimmers. Unlike static PDF plans, Teo provides a dynamic, adaptive training plan that evolves with your fitness, schedule, and goals."
+                answer: "Teo is an autonomous AI agent for endurance training. Powered by cutting-edge sports science, it autonomously builds and modifies your plan based on your feedback, fitness, and goals."
             },
             {
                 question: "Who is Teo for?",
@@ -22,16 +22,16 @@ const faqSections = [
             },
             {
                 question: "How is this different from a human coach?",
-                answer: "Teo gives you the hyper-personalization of a human coach—analyzing your data, adjusting for illness/travel, and answering questions—at a fraction of the cost ($20/mo vs $300+/mo). It's available 24/7 to adjust your plan instantly."
+                answer: "Teo gives you the hyper-personalization of a human coach—analyzing your data, adjusting for illness/travel, and answering questions—at a fraction of the cost ($20/mo vs $300+/mo). It uses autonomous tools to adjust your plan instantly."
             }
         ]
     },
     {
-        title: "Training & AI",
+        title: "Training & Agentic Tech",
         faqs: [
             {
                 question: "What happens if I miss a workout?",
-                answer: "Life happens. Just tell Teo \"I missed yesterday's run\" or \"I'm sick,\" and the AI will instantly recalculate your future workouts to keep you on track without overtraining you."
+                answer: "Life happens. Just tell Teo \"I missed yesterday's run\" or \"I'm sick,\" and the Agent will instantly recalculate your future workouts to keep you on track without overtraining you."
             },
             {
                 question: "Can I customize my schedule?",
@@ -56,23 +56,7 @@ const faqSections = [
             }
         ]
     },
-    {
-        title: "Billing & Access",
-        faqs: [
-            {
-                question: "How much does Teo cost?",
-                answer: "Teo costs $20 USD per month. There are no hidden setup fees or long-term contracts."
-            },
-            {
-                question: "Is there a free trial?",
-                answer: "Yes! Every new athlete gets a 30-day free trial with full access to all \"Pro\" features. No credit card is required to start your trial."
-            },
-            {
-                question: "Can I cancel anytime?",
-                answer: "Yes. You can cancel your subscription instantly from the app settings. You'll keep access until the end of your current billing period."
-            }
-        ]
-    }
+
 ];
 
 export function FAQ() {
