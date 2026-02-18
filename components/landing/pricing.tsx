@@ -5,57 +5,59 @@ import { Check, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
-const features = [
-    {
-        name: "Plan Generation",
-        free: "Basic (App View Only)",
-        premium: "Advanced & Adaptive",
-        highlight: true,
-    },
-    {
-        name: "Calendar Sync",
-        free: true,
-        premium: true,
-    },
-    {
-        name: "Send to Devices (Garmin/Apple Watch)",
-        free: false,
-        premium: true,
-    },
-    {
-        name: "AI Coach Models",
-        free: "Standard (Reduced Limits)",
-        premium: "Advanced (Higher Limits)",
-    },
-    {
-        name: "Voice Memos & Analysis",
-        free: false,
-        premium: true,
-    },
-    {
-        name: "Coach Style Customization",
-        free: false,
-        premium: true,
-    },
-    {
-        name: "Auto-Adaptive Plans",
-        free: false,
-        premium: "Based on Completion % & Stats",
-    },
-    {
-        name: "Sleep Metrics & Recovery",
-        free: false,
-        premium: true,
-    },
-    {
-        name: "Workout Modification",
-        free: false,
-        premium: "Full Flexibility",
-    },
-];
+import { useLanguage } from "@/components/language-provider";
 
 export function Pricing() {
+    const { t } = useLanguage();
+
+    const features = [
+        {
+            name: t("pricing.features.planGen"),
+            free: t("pricing.features.planGenFree"),
+            premium: t("pricing.features.planGenPrem"),
+            highlight: true,
+        },
+        {
+            name: t("pricing.features.calendar"),
+            free: true,
+            premium: true,
+        },
+        {
+            name: t("pricing.features.devices"),
+            free: false,
+            premium: true,
+        },
+        {
+            name: t("pricing.features.aiCoach"),
+            free: t("pricing.features.aiCoachFree"),
+            premium: t("pricing.features.aiCoachPrem"),
+        },
+        {
+            name: t("pricing.features.voice"),
+            free: false,
+            premium: true,
+        },
+        {
+            name: t("pricing.features.style"),
+            free: false,
+            premium: true,
+        },
+        {
+            name: t("pricing.features.adaptive"),
+            free: false,
+            premium: t("pricing.features.adaptivePrem"),
+        },
+        {
+            name: t("pricing.features.sleep"),
+            free: false,
+            premium: true,
+        },
+        {
+            name: t("pricing.features.mod"),
+            free: false,
+            premium: t("pricing.features.modPrem"),
+        },
+    ];
     return (
         <section className="py-24 bg-slate-50 relative overflow-hidden" id="pricing">
             <Container>
@@ -66,7 +68,7 @@ export function Pricing() {
                         viewport={{ once: true }}
                         className="text-4xl md:text-5xl font-bold text-slate-900 mb-6"
                     >
-                        Flexible Pricing for Every Athlete
+                        {t("pricing.title")}
                     </motion.h2>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -76,10 +78,10 @@ export function Pricing() {
                         className="p-4 bg-orange-50 border border-orange-100 rounded-2xl inline-block"
                     >
                         <p className="text-orange-800 font-medium">
-                            <span className="font-bold">Beta Access:</span> Teo is currently free for a limited set of users.
+                            <span className="font-bold">{t("pricing.beta.badge")}</span> {t("pricing.beta.message")}
                             <br className="hidden md:block" />
-                            <span className="font-semibold block mt-1">Future Model: Freemium.</span>
-                            Basic features will remain free, while advanced AI tools will be part of Teo Premium.
+                            <span className="font-semibold block mt-1">{t("pricing.beta.future")}</span>
+                            {t("pricing.beta.futureMessage")}
                         </p>
                     </motion.div>
                 </div>
@@ -93,11 +95,11 @@ export function Pricing() {
                         transition={{ delay: 0.2 }}
                         className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm relative"
                     >
-                        <h3 className="text-2xl font-bold text-slate-900 mb-2">Teo Basic</h3>
-                        <p className="text-slate-500 mb-6">Essential tools for your training journey.</p>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{t("pricing.basic.name")}</h3>
+                        <p className="text-slate-500 mb-6">{t("pricing.basic.description")}</p>
                         <div className="text-4xl font-bold text-slate-900 mb-8">
-                            Free
-                            <span className="text-lg font-normal text-slate-500 block text-sm mt-1">during beta</span>
+                            {t("pricing.basic.price")}
+                            <span className="text-lg font-normal text-slate-500 block text-sm mt-1">{t("pricing.basic.subPrice")}</span>
                         </div>
 
                         <div className="space-y-4 mb-8">
@@ -121,7 +123,7 @@ export function Pricing() {
                         </div>
 
                         <Button variant="outline" className="w-full rounded-xl py-6" disabled>
-                            Coming Soon
+                            {t("pricing.basic.button")}
                         </Button>
                     </motion.div>
 
@@ -134,15 +136,15 @@ export function Pricing() {
                         className="p-8 rounded-3xl bg-white/80 backdrop-blur-xl border-2 border-orange-400 shadow-2xl shadow-orange-500/10 relative overflow-hidden"
                     >
                         <div className="absolute top-0 right-0 bg-orange-400 text-white text-xs font-bold px-3 py-1 rounded-bl-xl">
-                            RECOMMENDED
+                            {t("pricing.premium.tag")}
                         </div>
 
-                        <h3 className="text-2xl font-bold text-slate-900 mb-2">Teo Premium</h3>
-                        <p className="text-orange-600 font-medium mb-6">The Full Experience.</p>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{t("pricing.premium.name")}</h3>
+                        <p className="text-orange-600 font-medium mb-6">{t("pricing.premium.description")}</p>
                         <div className="text-4xl font-bold text-slate-900 mb-8">
-                            $15
-                            <span className="text-lg font-normal text-slate-500">/mo</span>
-                            <span className="text-sm font-normal text-green-600 block mt-1">Free during beta</span>
+                            {t("pricing.premium.price")}
+                            <span className="text-lg font-normal text-slate-500">{t("pricing.premium.period")}</span>
+                            <span className="text-sm font-normal text-green-600 block mt-1">{t("pricing.premium.subPrice")}</span>
                         </div>
 
                         <div className="space-y-4 mb-8">
@@ -164,10 +166,10 @@ export function Pricing() {
                         </div>
 
                         <Button variant="outline" className="w-full rounded-xl py-6" disabled>
-                            Coming Soon
+                            {t("pricing.premium.button")}
                         </Button>
                         <p className="text-center text-xs text-slate-400 mt-4">
-                            Limited spots available for beta testing.
+                            {t("pricing.premium.note")}
                         </p>
                     </motion.div>
                 </div>

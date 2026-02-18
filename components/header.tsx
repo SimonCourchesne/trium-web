@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 const links: { href: string; label: string }[] = [];
 
@@ -60,7 +61,8 @@ export function Header() {
                         ))}
                     </div>
 
-                    <div className="hidden md:flex items-center gap-4">
+                    <div className="flex items-center gap-4">
+                        <LanguageSwitcher />
                         {/* Buttons removed for initial launch as per request */}
                     </div>
                 </nav>

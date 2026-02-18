@@ -5,8 +5,10 @@ import { Iphone15Pro } from "@/components/ui/iphone-15-pro";
 import { motion } from "framer-motion";
 import { Apple, Play } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/components/language-provider";
 
 export function Hero() {
+    const { t } = useLanguage();
     return (
         <div className="relative overflow-hidden pt-[120px] pb-16 md:pt-40 md:pb-32 min-h-screen flex flex-col justify-center">
             {/* Background - Mesh Gradient & Image Overlay */}
@@ -34,7 +36,7 @@ export function Hero() {
                         transition={{ duration: 0.5 }}
                     >
                         <span className="inline-block px-4 py-1.5 rounded-full bg-white/60 border border-white/40 text-sm font-semibold text-primary shadow-sm backdrop-blur-md mb-6">
-                            Coming Soon to iOS & Android
+                            {t("hero.badge")}
                         </span>
                     </motion.div>
 
@@ -44,8 +46,8 @@ export function Hero() {
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="text-4xl xs:text-5xl font-bold tracking-tight text-ink md:text-7xl lg:text-8xl pb-2 px-4"
                     >
-                        Your Personal <br className="hidden md:block" />
-                        <span className="text-gradient">AI Coaching Agent.</span>
+                        {t("hero.title")} <br className="hidden md:block" />
+                        <span className="text-gradient">{t("hero.titleHighlight")}</span>
                     </motion.h1>
 
                     <motion.p
@@ -54,8 +56,7 @@ export function Hero() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="mt-6 max-w-2xl text-lg text-slate-600 md:text-xl font-medium"
                     >
-                        Adaptive training plans for Triathlon, Running, Cycling, and Swimming.
-                        Powered by a smart AI agent with access to cutting-edge sports science and autonomous tools to modify your plan.
+                        {t("hero.subtitle")}
                     </motion.p>
 
                     <motion.div
@@ -66,7 +67,7 @@ export function Hero() {
                     >
                         {/* Buttons removed for showcase version */}
                         <p className="text-slate-500 italic">
-                            Accepting new athletes soon.
+                            {t("hero.availability")}
                         </p>
                     </motion.div>
 

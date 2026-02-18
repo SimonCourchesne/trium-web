@@ -13,7 +13,10 @@ const screenshots = [
     "/assets/screenshots/settings_page.PNG",
 ];
 
+import { useLanguage } from "@/components/language-provider";
+
 export function AppShowcase() {
+    const { t } = useLanguage();
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -21,10 +24,10 @@ export function AppShowcase() {
             <Container>
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold text-ink md:text-5xl tracking-tight">
-                        Designed for <span className="text-gradient">Athletes.</span>
+                        {t("appShowcase.title")} <span className="text-gradient">{t("appShowcase.titleHighlight")}</span>
                     </h2>
                     <p className="mt-6 text-xl text-slate-600 max-w-2xl mx-auto">
-                        A generic coaching plan isn't enough. Teo adapts to your life, your goals, and your physiology.
+                        {t("appShowcase.subtitle")}
                     </p>
                 </div>
             </Container>

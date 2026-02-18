@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
+
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Twitter, Instagram, Github } from "lucide-react";
+import { useLanguage } from "@/components/language-provider";
 
 export function Footer() {
+    const { t } = useLanguage();
     return (
         <footer className="border-t border-slate-200 bg-slate-50 py-12">
             <Container>
@@ -20,31 +25,30 @@ export function Footer() {
                             <span className="text-xl font-bold text-ink">Teo.</span>
                         </Link>
                         <p className="mt-4 text-sm text-slate-500 max-w-xs">
-                            Adaptive Agentic coaching for the modern athlete.
-                            Train smarter, recover better, and race faster.
+                            {t("footer.description")}
                         </p>
                     </div>
 
                     <div>
-                        <h3 className="mb-4 text-sm font-semibold text-ink">Product</h3>
+                        <h3 className="mb-4 text-sm font-semibold text-ink">{t("footer.product")}</h3>
                         <ul className="space-y-3 text-sm text-slate-500">
-                            <li><Link href="#features" className="hover:text-primary">Features</Link></li>
-                            <li><Link href="#mission" className="hover:text-primary">Mission</Link></li>
-                            <li><Link href="#faq" className="hover:text-primary">FAQ</Link></li>
+                            <li><Link href="#features" className="hover:text-primary">{t("nav.features")}</Link></li>
+                            <li><Link href="#mission" className="hover:text-primary">{t("mission.titleHighlight")}</Link></li>
+                            <li><Link href="#faq" className="hover:text-primary">{t("nav.faq")}</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="mb-4 text-sm font-semibold text-ink">Legal</h3>
+                        <h3 className="mb-4 text-sm font-semibold text-ink">{t("footer.legal")}</h3>
                         <ul className="space-y-3 text-sm text-slate-500">
-                            <li><Link href="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
+                            <li><Link href="/privacy" className="hover:text-primary">{t("footer.privacy")}</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 md:flex-row">
                     <p className="text-sm text-slate-400">
-                        © {new Date().getFullYear()} Teo. Coaching. All rights reserved.
+                        © {new Date().getFullYear()} {t("footer.rights")}
                     </p>
                 </div>
             </Container>

@@ -5,31 +5,33 @@ import { Container } from "@/components/ui/container";
 import { Iphone15Pro } from "@/components/ui/iphone-15-pro";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
-
-const steps = [
-    {
-        title: "Tell Teo About You",
-        description: "Start by sharing your race date, distance, and current fitness level. Teo uses this to build a baseline for your training.",
-        screenshot: "/assets/screenshots/plan_creation_plan_basics_1.PNG",
-    },
-    {
-        title: "Set Your Availability",
-        description: "Select the days you can train. Teo respects your schedule and builds the plan around your life, not the other way around.",
-        screenshot: "/assets/screenshots/plan_creation_weekly_schedule_2.PNG",
-    },
-    {
-        title: "Your Season at a Glance",
-        description: "Teo maps out your entire season, including base, build, and peak phases, so you know exactly what to expect leading up to race day.",
-        screenshot: "/assets/screenshots/plan_creation_race_calendar_3.PNG",
-    },
-    {
-        title: "Final Details & Context",
-        description: "Add any specific constraints or notes via voice or text. Teo takes everything into account to create a truly custom plan.",
-        screenshot: "/assets/screenshots/plan_creation_final_details_voice_4.PNG",
-    },
-];
+import { useLanguage } from "@/components/language-provider";
 
 export function PlanCreationShowcase() {
+    const { t } = useLanguage();
+
+    const steps = [
+        {
+            title: t("planCreation.steps.0.title"),
+            description: t("planCreation.steps.0.description"),
+            screenshot: "/assets/screenshots/plan_creation_plan_basics_1.PNG",
+        },
+        {
+            title: t("planCreation.steps.1.title"),
+            description: t("planCreation.steps.1.description"),
+            screenshot: "/assets/screenshots/plan_creation_weekly_schedule_2.PNG",
+        },
+        {
+            title: t("planCreation.steps.2.title"),
+            description: t("planCreation.steps.2.description"),
+            screenshot: "/assets/screenshots/plan_creation_race_calendar_3.PNG",
+        },
+        {
+            title: t("planCreation.steps.3.title"),
+            description: t("planCreation.steps.3.description"),
+            screenshot: "/assets/screenshots/plan_creation_final_details_voice_4.PNG",
+        },
+    ];
     return (
         <section className="py-24 bg-white relative overflow-hidden">
             <Container>
@@ -41,10 +43,10 @@ export function PlanCreationShowcase() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-ink mb-6">
-                            Constructing Your <span className="text-blue-600">Perfect Plan.</span>
+                            {t("planCreation.title")} <span className="text-blue-600">{t("planCreation.titleHighlight")}</span>
                         </h2>
                         <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                            Watch how Teo builds a professional-grade training plan tailored specifically to your goals and schedule in seconds.
+                            {t("planCreation.subtitle")}
                         </p>
                     </motion.div>
                 </div>
@@ -64,7 +66,7 @@ export function PlanCreationShowcase() {
     );
 }
 
-function StepCard({ step, index }: { step: (typeof steps)[0]; index: number }) {
+function StepCard({ step, index }: { step: { title: string; description: string; screenshot: string }; index: number }) {
     const isEven = index % 2 === 0;
 
     return (
@@ -115,14 +117,12 @@ function StepCard({ step, index }: { step: (typeof steps)[0]; index: number }) {
                         isEven ? "md:pl-12" : "md:pr-12"
                     )}
                 >
-                    <div className="relative mx-auto rounded-[3rem] p-2 bg-slate-100/50 border border-slate-200/60 shadow-xl">
-                        <Iphone15Pro
-                            src={step.screenshot}
-                            width={280}
-                            height={600}
-                            className="shadow-2xl shadow-blue-900/10"
-                        />
-                    </div>
+                    <Iphone15Pro
+                        src={step.screenshot}
+                        width={280}
+                        height={600}
+                        className="mx-auto"
+                    />
                 </motion.div>
             </div>
         </div>

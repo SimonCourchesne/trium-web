@@ -7,65 +7,42 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Container } from "@/components/ui/container";
-
-const faqSections = [
-    {
-        title: "General",
-        faqs: [
-            {
-                question: "What is Teo?",
-                answer: "Teo is an autonomous AI agent for endurance training. Powered by cutting-edge sports science, it autonomously builds and modifies your plan based on your feedback, fitness, and goals."
-            },
-            {
-                question: "Who is Teo for?",
-                answer: "Whether you're training for your first 5K, aiming for a Kona slot, or just wanting to stay fit, Teo adapts to your level. We support Triathlon (Sprint to Full), Running (5K to Ultra), Cycling, Swimming, and Duathlon."
-            },
-            {
-                question: "How is this different from a human coach?",
-                answer: "Teo gives you the hyper-personalization of a human coach—analyzing your data, adjusting for illness/travel, and answering questions—at a fraction of the cost ($20/mo vs $300+/mo). It uses autonomous tools to adjust your plan instantly."
-            }
-        ]
-    },
-    {
-        title: "Training & Agentic Tech",
-        faqs: [
-            {
-                question: "What happens if I miss a workout?",
-                answer: "Life happens. Just tell Teo \"I missed yesterday's run\" or \"I'm sick,\" and the Agent will instantly recalculate your future workouts to keep you on track without overtraining you."
-            },
-            {
-                question: "Can I customize my schedule?",
-                answer: "Absolutely. You define your long run days, off days, and weekly volume limits. You can also drag-and-drop workouts or ask the Coach to \"Move my long ride to Sunday.\""
-            },
-            {
-                question: "Does Teo use my training data?",
-                answer: "Yes. We analyze your completed workouts (pace, heart rate, power, RPE) to adjust future training intensities. If a session felt too hard, we'll dial it back. If it was too easy, we'll challenge you more."
-            }
-        ]
-    },
-    {
-        title: "Integrations & Devices",
-        faqs: [
-            {
-                question: "What devices does Teo work with?",
-                answer: "Teo pushes workouts directly to your Garmin watch or bike computer. We also sync completed activities from Garmin Connect and Strava to track your progress."
-            },
-            {
-                question: "Can I see my workouts in my calendar?",
-                answer: "Yes. Teo provides a live calendar feed (ICS) that syncs with Google Calendar, Apple Calendar, and Outlook, so your training is always visible alongside your life."
-            }
-        ]
-    },
-
-];
+import { useLanguage } from "@/components/language-provider";
 
 export function FAQ() {
+    const { t } = useLanguage();
+
+    const faqSections = [
+        {
+            title: t("faq.sections.general"),
+            faqs: [
+                { question: t("faq.items.0.q"), answer: t("faq.items.0.a") },
+                { question: t("faq.items.1.q"), answer: t("faq.items.1.a") },
+                { question: t("faq.items.2.q"), answer: t("faq.items.2.a") }
+            ]
+        },
+        {
+            title: t("faq.sections.training"),
+            faqs: [
+                { question: t("faq.items.3.q"), answer: t("faq.items.3.a") },
+                { question: t("faq.items.4.q"), answer: t("faq.items.4.a") },
+                { question: t("faq.items.5.q"), answer: t("faq.items.5.a") }
+            ]
+        },
+        {
+            title: t("faq.sections.integrations"),
+            faqs: [
+                { question: t("faq.items.6.q"), answer: t("faq.items.6.a") },
+                { question: t("faq.items.7.q"), answer: t("faq.items.7.a") }
+            ]
+        },
+    ];
     return (
         <section id="faq" className="py-24 bg-white">
             <Container>
                 <div className="mx-auto max-w-3xl">
                     <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-ink md:text-4xl">
-                        Frequently Asked Questions
+                        {t("faq.title")}
                     </h2>
 
                     <div className="space-y-10">

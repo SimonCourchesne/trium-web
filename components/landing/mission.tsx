@@ -4,32 +4,34 @@ import { Container } from "@/components/ui/container";
 import { motion } from "framer-motion";
 import { MessageSquare, Zap, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const features = [
-    {
-        title: "Proactive AI Agent",
-        description: "Teo texts you to check in. It knows when you missed a workout and asks why, just like a real coach.",
-        icon: MessageSquare,
-        className: "md:col-span-2",
-        gradient: "from-blue-500/20 to-cyan-500/20"
-    },
-    {
-        title: "True Adaptation",
-        description: "Uses autonomous tools to adjust intensity based on RPE and life events. Not just a spreadsheet.",
-        icon: Zap,
-        className: "md:col-span-1",
-        gradient: "from-orange-500/20 to-amber-500/20"
-    },
-    {
-        title: "Instant Knowledge",
-        description: "Ask about nutrition, gear, or race strategy. Get expert answers instantly, 24/7.",
-        icon: GraduationCap,
-        className: "md:col-span-3",
-        gradient: "from-purple-500/20 to-pink-500/20"
-    }
-];
+import { useLanguage } from "@/components/language-provider";
 
 export function Mission() {
+    const { t } = useLanguage();
+
+    const features = [
+        {
+            title: t("mission.features.0.title"),
+            description: t("mission.features.0.description"),
+            icon: MessageSquare,
+            className: "md:col-span-2",
+            gradient: "from-blue-500/20 to-cyan-500/20"
+        },
+        {
+            title: t("mission.features.1.title"),
+            description: t("mission.features.1.description"),
+            icon: Zap,
+            className: "md:col-span-1",
+            gradient: "from-orange-500/20 to-amber-500/20"
+        },
+        {
+            title: t("mission.features.2.title"),
+            description: t("mission.features.2.description"),
+            icon: GraduationCap,
+            className: "md:col-span-3",
+            gradient: "from-purple-500/20 to-pink-500/20"
+        }
+    ];
     return (
         <section id="mission" className="relative py-24 md:py-32 bg-slate-900 border-y border-slate-800 overflow-hidden">
             {/* Background Effects */}
@@ -43,8 +45,8 @@ export function Mission() {
                         viewport={{ once: true }}
                         className="text-3xl font-bold tracking-tight text-white md:text-5xl mb-6"
                     >
-                        More Than Just a Plan. <br />
-                        <span className="text-gradient">A Real Coach.</span>
+                        {t("mission.title")} <br />
+                        <span className="text-gradient">{t("mission.titleHighlight")}</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -53,9 +55,7 @@ export function Mission() {
                         transition={{ delay: 0.1 }}
                         className="text-lg text-slate-400 max-w-2xl mx-auto"
                     >
-                        We're democratizing the elite coaching experience.
-                        No more <span className="text-white font-medium">$300/month</span> fees.
-                        Just smart, personalized guidance that actually knows you.
+                        {t("mission.description")}
                     </motion.p>
                 </div>
 

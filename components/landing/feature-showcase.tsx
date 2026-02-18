@@ -6,37 +6,36 @@ import { Calendar, MessageSquare, BarChart3 } from "lucide-react";
 import { Iphone15Pro } from "@/components/ui/iphone-15-pro";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
-
-const features = [
-    {
-        title: "Plans That Adapt To You",
-        description:
-            "Life happens. Missed a workout? Sick? Busy work week? Teo autonomously recalculates your entire season to keep you on track without burnout.",
-        icon: Calendar,
-        screenshot: "/assets/screenshots/calendar_page.PNG",
-    },
-    {
-        title: "24/7 Expert Guidance",
-        description:
-            "Chat with your Agent coach anytime. Access cutting-edge sports science advice on nutrition, race strategy, or gear. It knows your training history and physiology.",
-        icon: MessageSquare,
-        screenshot: "/assets/screenshots/coach_chat_page.PNG",
-    },
-    {
-        title: "Track What Matters",
-        description:
-            "Visualize your fitness progression, fatigue, and form. Connects seamlessly with Garmin and Strava to bring all your data into one place.",
-        icon: BarChart3,
-        screenshot: "/assets/screenshots/you_page.PNG",
-    },
-];
+import { useLanguage } from "@/components/language-provider";
 
 export function FeatureShowcase() {
+    const { t } = useLanguage();
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"],
     });
+
+    const features = [
+        {
+            title: t("featureShowcase.features.0.title"),
+            description: t("featureShowcase.features.0.description"),
+            icon: Calendar,
+            screenshot: "/assets/screenshots/calendar_page.PNG",
+        },
+        {
+            title: t("featureShowcase.features.1.title"),
+            description: t("featureShowcase.features.1.description"),
+            icon: MessageSquare,
+            screenshot: "/assets/screenshots/coach_chat_page.PNG",
+        },
+        {
+            title: t("featureShowcase.features.2.title"),
+            description: t("featureShowcase.features.2.description"),
+            icon: BarChart3,
+            screenshot: "/assets/screenshots/you_page.PNG",
+        },
+    ];
 
     return (
         <section className="bg-black text-white relative">
@@ -49,10 +48,10 @@ export function FeatureShowcase() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">
-                            Train Smart.
+                            {t("featureShowcase.title")}
                         </h2>
                         <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto font-light">
-                            Everything you need to reach your peak performance, intelligently adapted to you.
+                            {t("featureShowcase.subtitle")}
                         </p>
                     </motion.div>
                 </Container>
@@ -124,7 +123,7 @@ function FeatureImage({
     scrollYProgress,
     total,
 }: {
-    feature: (typeof features)[0];
+    feature: { title: string; description: string; icon: any; screenshot: string };
     index: number;
     scrollYProgress: MotionValue<number>;
     total: number;
@@ -195,7 +194,7 @@ function FeatureDescription({
     feature,
     index,
 }: {
-    feature: (typeof features)[0];
+    feature: { title: string; description: string; icon: any; screenshot: string };
     index: number;
 }) {
     const isLeft = index % 2 === 0;
@@ -225,7 +224,7 @@ function FeatureDescription({
     );
 }
 
-function ContentCard({ feature, align }: { feature: (typeof features)[0], align: "left" | "right" }) {
+function ContentCard({ feature, align }: { feature: { title: string; description: string; icon: any; screenshot: string }, align: "left" | "right" }) {
     return (
         <motion.div
             initial={{ opacity: 0, x: align === "left" ? -20 : 20, filter: "blur(4px)" }}
