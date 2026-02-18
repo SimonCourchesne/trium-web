@@ -1,13 +1,13 @@
-# Trium Branding Guidelines
+# Teo Branding Guidelines
 
-These guidelines ensure visual and tonal consistency between the Trium mobile application and the marketing website.
+These guidelines ensure visual and tonal consistency between the Teo mobile application and the marketing website.
 
 ---
 
 ## 1. Core Identity
 
 ### Mission
-To democratize elite endurance coaching. Trium provides every athlete—whether a beginner runner or an Ironman triathlete—with a personalized, adaptive, and intelligent training plan that fits their life, not the other way around.
+To democratize elite endurance coaching. Teo provides every athlete—whether a beginner runner or an Ironman triathlete—with a personalized, adaptive, and intelligent training plan that fits their life, not the other way around.
 
 ### Vision
 A world where high-quality coaching is accessible to everyone, regardless of budget.

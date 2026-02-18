@@ -12,7 +12,7 @@ export function Footer() {
                             <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center">
                                 <span className="text-white font-bold text-lg">T</span>
                             </div>
-                            <span className="text-xl font-bold text-ink">Trium</span>
+                            <span className="text-xl font-bold text-ink">Teo</span>
                         </Link>
                         <p className="mt-4 text-sm text-slate-500 max-w-xs">
                             Adaptive AI coaching for the modern athlete.
@@ -39,7 +39,7 @@ export function Footer() {
 
                 <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 md:flex-row">
                     <p className="text-sm text-slate-400">
-                        © {new Date().getFullYear()} Trium Inc. All rights reserved.
+                        © {new Date().getFullYear()} Teo Coaching. All rights reserved.
                     </p>
                 </div>
             </Container>

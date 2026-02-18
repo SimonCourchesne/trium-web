@@ -13,16 +13,16 @@ const faqSections = [
         title: "General",
         faqs: [
             {
-                question: "What is Trium?",
-                answer: "Trium is an AI-powered endurance coaching app designed for triathletes, runners, cyclists, and swimmers. Unlike static PDF plans, Trium provides a dynamic, adaptive training plan that evolves with your fitness, schedule, and goals."
+                question: "What is Teo?",
+                answer: "Teo is an AI-powered endurance coaching app designed for triathletes, runners, cyclists, and swimmers. Unlike static PDF plans, Teo provides a dynamic, adaptive training plan that evolves with your fitness, schedule, and goals."
             },
             {
-                question: "Who is Trium for?",
-                answer: "Whether you're training for your first 5K, aiming for a Kona slot, or just wanting to stay fit, Trium adapts to your level. We support Triathlon (Sprint to Full), Running (5K to Ultra), Cycling, Swimming, and Duathlon."
+                question: "Who is Teo for?",
+                answer: "Whether you're training for your first 5K, aiming for a Kona slot, or just wanting to stay fit, Teo adapts to your level. We support Triathlon (Sprint to Full), Running (5K to Ultra), Cycling, Swimming, and Duathlon."
             },
             {
                 question: "How is this different from a human coach?",
-                answer: "Trium gives you the hyper-personalization of a human coach—analyzing your data, adjusting for illness/travel, and answering questions—at a fraction of the cost ($20/mo vs $300+/mo). It's available 24/7 to adjust your plan instantly."
+                answer: "Teo gives you the hyper-personalization of a human coach—analyzing your data, adjusting for illness/travel, and answering questions—at a fraction of the cost ($20/mo vs $300+/mo). It's available 24/7 to adjust your plan instantly."
             }
         ]
     },
@@ -31,14 +31,14 @@ const faqSections = [
         faqs: [
             {
                 question: "What happens if I miss a workout?",
-                answer: "Life happens. Just tell Trium \"I missed yesterday's run\" or \"I'm sick,\" and the AI will instantly recalculate your future workouts to keep you on track without overtraining you."
+                answer: "Life happens. Just tell Teo \"I missed yesterday's run\" or \"I'm sick,\" and the AI will instantly recalculate your future workouts to keep you on track without overtraining you."
             },
             {
                 question: "Can I customize my schedule?",
                 answer: "Absolutely. You define your long run days, off days, and weekly volume limits. You can also drag-and-drop workouts or ask the Coach to \"Move my long ride to Sunday.\""
             },
             {
-                question: "Does Trium use my training data?",
+                question: "Does Teo use my training data?",
                 answer: "Yes. We analyze your completed workouts (pace, heart rate, power, RPE) to adjust future training intensities. If a session felt too hard, we'll dial it back. If it was too easy, we'll challenge you more."
             }
         ]
@@ -47,12 +47,12 @@ const faqSections = [
         title: "Integrations & Devices",
         faqs: [
             {
-                question: "What devices does Trium work with?",
-                answer: "Trium pushes workouts directly to your Garmin watch or bike computer. We also sync completed activities from Garmin Connect and Strava to track your progress."
+                question: "What devices does Teo work with?",
+                answer: "Teo pushes workouts directly to your Garmin watch or bike computer. We also sync completed activities from Garmin Connect and Strava to track your progress."
             },
             {
                 question: "Can I see my workouts in my calendar?",
-                answer: "Yes. Trium provides a live calendar feed (ICS) that syncs with Google Calendar, Apple Calendar, and Outlook, so your training is always visible alongside your life."
+                answer: "Yes. Teo provides a live calendar feed (ICS) that syncs with Google Calendar, Apple Calendar, and Outlook, so your training is always visible alongside your life."
             }
         ]
     },
@@ -60,8 +60,8 @@ const faqSections = [
         title: "Billing & Access",
         faqs: [
             {
-                question: "How much does Trium cost?",
-                answer: "Trium costs $20 USD per month. There are no hidden setup fees or long-term contracts."
+                question: "How much does Teo cost?",
+                answer: "Teo costs $20 USD per month. There are no hidden setup fees or long-term contracts."
             },
             {
                 question: "Is there a free trial?",

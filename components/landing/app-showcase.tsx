@@ -26,7 +26,7 @@ export function AppShowcase() {
                         Designed for <span className="text-gradient">Athletes.</span>
                     </h2>
                     <p className="mt-6 text-xl text-slate-600 max-w-2xl mx-auto">
-                        A generic coaching plan isn't enough. Trium adapts to your life, your goals, and your physiology.
+                        A generic coaching plan isn't enough. Teo adapts to your life, your goals, and your physiology.
                     </p>
                 </div>
             </Container>

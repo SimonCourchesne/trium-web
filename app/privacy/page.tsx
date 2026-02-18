@@ -66,10 +66,10 @@ export default function PrivacyPage() {
                                 1. Introduction
                             </h2>
                             <p className="text-slate-600 leading-relaxed">
-                                Welcome to Trium ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal health and fitness information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application (the "App") and website.
+                                Welcome to Teo ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal health and fitness information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application (the "App") and website.
                             </p>
                             <p className="text-slate-600 leading-relaxed mt-4">
-                                By using Trium, you consent to the data practices described in this policy. If you do not agree with the terms of this Privacy Policy, please do not access the App.
+                                By using Teo, you consent to the data practices described in this policy. If you do not agree with the terms of this Privacy Policy, please do not access the App.
                             </p>
                         </motion.section>
 
@@ -186,9 +186,9 @@ export default function PrivacyPage() {
                                             <div className="bg-white/50 p-5 rounded-xl border border-white/60">
                                                 <h4 className="font-bold text-ink mb-2">B. Strava API</h4>
                                                 <ul className="list-disc list-inside space-y-1 text-sm">
-                                                    <li><strong>Usage:</strong> Used solely to display your activities within Trium and analyze fitness progress.</li>
+                                                    <li><strong>Usage:</strong> Used solely to display your activities within Teo and analyze fitness progress.</li>
                                                     <li><strong>AI Restriction:</strong> We do <strong>not</strong> use your Strava data to train our global AI models. It is processed transiently for <em>your</em> insights.</li>
-                                                    <li><strong>Visibility:</strong> Your Strava data is strictly private within Trium.</li>
+                                                    <li><strong>Visibility:</strong> Your Strava data is strictly private within Teo.</li>
                                                 </ul>
                                             </div>
 
@@ -334,7 +334,7 @@ export default function PrivacyPage() {
                                         </div>
                                     </AccordionTrigger>
                                     <AccordionContent className="px-6 pb-6 pt-2 text-slate-600">
-                                        <p className="bg-white/50 p-4 rounded-xl border border-white/60">Trium is not intended for use by children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected such information, we will take steps to delete it immediately.</p>
+                                        <p className="bg-white/50 p-4 rounded-xl border border-white/60">Teo is not intended for use by children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected such information, we will take steps to delete it immediately.</p>
                                     </AccordionContent>
                                 </AccordionItem>
 

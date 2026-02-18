@@ -46,7 +46,7 @@ export function Header() {
                             <span className="text-white font-bold text-lg">T</span>
                         </div>
                         <span className="text-xl font-bold text-ink">
-                            Trium
+                            Teo
                         </span>
                     </Link>
 

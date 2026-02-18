@@ -11,7 +11,7 @@ const features = [
     {
         title: "Plans That Adapt To You",
         description:
-            "Life happens. Missed a workout? Sick? Busy work week? Trium instantly recalculates your entire season to keep you on track without burnout.",
+            "Life happens. Missed a workout? Sick? Busy work week? Teo instantly recalculates your entire season to keep you on track without burnout.",
         icon: Calendar,
         screenshot: "/assets/screenshots/plan_creation_weekly_schedule_2.PNG",
     },
