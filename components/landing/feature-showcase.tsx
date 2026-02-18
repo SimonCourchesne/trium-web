@@ -150,64 +150,33 @@ function FeatureImage({
     const effectiveFadeOutStart = index === total - 1 ? 0.95 : fadeOutStart;
     const effectiveFadeOutEnd = index === total - 1 ? 1 : fadeOutStart + 0.05; // Quick fade out
 
+    const transitionBuffer = 0.1; // Amount of overlap for crossfade
+
     const opacity = useTransform(
         scrollYProgress,
-        // Define explicit checkpoints: [Before Start, Start Fade, End Fade (Full), Start Fade Out, End Fade Out (Gone)]
-        // But simply: 
-        // 0 -> Start of Section
-        // 1 -> Middle of Section
-        // 0 -> End of Section
-        // We need overlap for crossfade.
-        // Let's use a simpler mapping based on exact section overlapping
         [
-            index * sectionHeight, // Start of section
-            index * sectionHeight + 0.05, // 5% into section (Fully Visible)
-            (index + 1) * sectionHeight - 0.05, // 5% before end (Start Fading)
-            (index + 1) * sectionHeight // End of section (Fully Invisible)
+            index * sectionHeight - transitionBuffer,
+            index * sectionHeight + transitionBuffer,
+            (index + 1) * sectionHeight - transitionBuffer,
+            (index + 1) * sectionHeight + transitionBuffer
         ],
         [0, 1, 1, 0]
     );
 
-    // Override for first item (always visible at start)
+    // Override for first and last items
     const finalOpacity = index === 0
-        ? useTransform(scrollYProgress, [0, sectionHeight - 0.05, sectionHeight], [1, 1, 0])
+        ? useTransform(scrollYProgress, [sectionHeight - transitionBuffer, sectionHeight + transitionBuffer], [1, 0])
         : index === total - 1
-            ? useTransform(scrollYProgress, [index * sectionHeight, index * sectionHeight + 0.05, 1], [0, 1, 1])
+            ? useTransform(scrollYProgress, [index * sectionHeight - transitionBuffer, index * sectionHeight + transitionBuffer], [0, 1])
             : opacity;
 
-    // Blur Logic: Blur at edges, clear in center
-    const blur = useTransform(
-        scrollYProgress,
-        [
-            index * sectionHeight,
-            index * sectionHeight + 0.05,
-            (index + 1) * sectionHeight - 0.05,
-            (index + 1) * sectionHeight
-        ],
-        ["10px", "0px", "0px", "10px"]
-    );
-
-    // Override blur for first/last
-    const finalBlur = index === 0
-        ? useTransform(scrollYProgress, [sectionHeight - 0.05, sectionHeight], ["0px", "10px"])
-        : index === total - 1
-            ? useTransform(scrollYProgress, [index * sectionHeight, index * sectionHeight + 0.05], ["10px", "0px"])
-            : blur;
 
 
-    // Scale stays consistent
-    const scale = useTransform(
-        scrollYProgress,
-        [index * sectionHeight, (index + 1) * sectionHeight],
-        [0.98, 1.02]
-    );
 
     return (
         <motion.div
             style={{
                 opacity: finalOpacity,
-                scale,
-                filter: finalBlur,
                 zIndex: index, // Stack order
             }}
             className="absolute inset-0 flex items-center justify-center will-change-transform"
