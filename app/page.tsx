@@ -7,7 +7,6 @@ import { PlanCreationShowcase } from "@/components/landing/plan-creation-showcas
 import { AppShowcase } from "@/components/landing/app-showcase";
 import { Mission } from "@/components/landing/mission";
 import { FAQ } from "@/components/landing/faq";
-import { Pricing } from "@/components/landing/pricing";
 
 export default function Home() {
     return (
@@ -19,7 +18,6 @@ export default function Home() {
             <PlanCreationShowcase />
             <AppShowcase />
             <Mission />
-            <Pricing />
             <FAQ />
             <Footer />
         </main>
