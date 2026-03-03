@@ -32,7 +32,7 @@ export const translations = {
                 },
                 {
                     title: "Track What Matters",
-                    description: "Visualize your fitness progression, fatigue, and form. Connects seamlessly with Garmin and Strava to bring all your data into one place."
+                    description: "Visualize your fitness progression, fatigue, and form. Sync your data from all your devices and activities into one place."
                 }
             ]
         },
@@ -113,7 +113,7 @@ export const translations = {
                 planGenFree: "Basic (App View Only)",
                 planGenPrem: "Advanced & Adaptive",
                 calendar: "Calendar Sync",
-                devices: "Send to Devices (Garmin/Apple Watch)",
+                devices: "Send to Devices (Smartwatch/Apple Watch)",
                 aiCoach: "AI Coach Models",
                 aiCoachFree: "Standard (Reduced Limits)",
                 aiCoachPrem: "Advanced (Higher Limits)",
@@ -160,7 +160,7 @@ export const translations = {
                 },
                 {
                     q: "What devices does Teo work with?",
-                    a: "Teo pushes workouts directly to your Garmin watch or bike computer. We also sync completed activities from Garmin Connect and Strava to track your progress."
+                    a: "Teo pushes workouts directly to your smartwatch or bike computer and syncs completed activities to track your progress."
                 },
                 {
                     q: "Can I see my workouts in my calendar?",
@@ -209,7 +209,7 @@ export const translations = {
                 },
                 {
                     title: "Suivez ce qui compte",
-                    description: "Visualisez votre progression, votre fatigue et votre forme. Se connecte parfaitement avec Garmin et Strava pour rassembler toutes vos données en un seul endroit."
+                    description: "Visualisez votre progression, votre fatigue et votre forme. Synchronisez vos données depuis tous vos appareils et activités en un seul endroit."
                 }
             ]
         },
@@ -290,7 +290,7 @@ export const translations = {
                 planGenFree: "Basique (Vue App seulement)",
                 planGenPrem: "Avancé & Adaptatif",
                 calendar: "Sync Calendrier",
-                devices: "Envoi vers appareils (Garmin/Apple Watch)",
+                devices: "Envoi vers appareils (Montre connectée/Apple Watch)",
                 aiCoach: "Modèles Coach IA",
                 aiCoachFree: "Standard (Limites réduites)",
                 aiCoachPrem: "Avancé (Limites plus élevées)",
@@ -337,7 +337,7 @@ export const translations = {
                 },
                 {
                     q: "Avec quels appareils Teo fonctionne-t-il ?",
-                    a: "Teo envoie les entraînements directement sur votre montre Garmin ou compteur vélo. Nous synchronisons également les activités terminées depuis Garmin Connect et Strava pour suivre vos progrès."
+                    a: "Teo envoie les entraînements directement sur votre montre connectée ou compteur vélo et synchronise les activités terminées pour suivre vos progrès."
                 },
                 {
                     q: "Puis-je voir mes entraînements dans mon calendrier ?",

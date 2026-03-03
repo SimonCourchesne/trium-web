@@ -2,7 +2,6 @@
 
 import { Container } from "@/components/ui/container";
 import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import {
     Accordion,
     AccordionContent,
@@ -156,7 +155,7 @@ export default function PrivacyPage() {
                                             </div>
                                             <div className="bg-white/50 p-4 rounded-xl border border-white/60">
                                                 <h4 className="font-semibold text-ink mb-2 text-base">4. Integration Sync</h4>
-                                                <p className="text-sm">To push workouts to your devices (Garmin) and pull completed activities from third-party services (Strava, Apple Health).</p>
+                                                <p className="text-sm">To push workouts to your devices and pull completed activities from third-party services (Apple Health, Google Fit).</p>
                                             </div>
                                         </div>
                                     </AccordionContent>
@@ -183,22 +182,9 @@ export default function PrivacyPage() {
                                                 </ul>
                                             </div>
 
-                                            <div className="bg-white/50 p-5 rounded-xl border border-white/60">
-                                                <h4 className="font-bold text-ink mb-2">B. Strava API</h4>
-                                                <ul className="list-disc list-inside space-y-1 text-sm">
-                                                    <li><strong>Usage:</strong> Used solely to display your activities within Teo and analyze fitness progress.</li>
-                                                    <li><strong>AI Restriction:</strong> We do <strong>not</strong> use your Strava data to train our global AI models. It is processed transiently for <em>your</em> insights.</li>
-                                                    <li><strong>Visibility:</strong> Your Strava data is strictly private within Teo.</li>
-                                                </ul>
-                                            </div>
-
                                             <div className="grid gap-4 sm:grid-cols-2">
                                                 <div className="bg-white/50 p-4 rounded-xl border border-white/60">
-                                                    <h4 className="font-bold text-ink mb-1">C. Garmin Connect</h4>
-                                                    <p className="text-sm">We use the Garmin Connect API to push structured workouts and pull completed activity files. We adhere to Garmin's restrictions on caching and retention.</p>
-                                                </div>
-                                                <div className="bg-white/50 p-4 rounded-xl border border-white/60">
-                                                    <h4 className="font-bold text-ink mb-1">D. Service Providers</h4>
+                                                    <h4 className="font-bold text-ink mb-1">B. Service Providers</h4>
                                                     <p className="text-sm"><strong>Supabase:</strong> Secure cloud database and auth.<br /><strong>Google Gemini:</strong> LLM provider for coaching (anonymized data only).</p>
                                                 </div>
                                             </div>
@@ -355,7 +341,6 @@ export default function PrivacyPage() {
                     </div>
                 </Container>
             </main>
-            <Footer />
         </div>
     );
 }

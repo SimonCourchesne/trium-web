@@ -18,10 +18,9 @@ export function SocialProof() {
                             {t("socialProof.syncsWith")}
                         </p>
                         <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 opacity-60 grayscale transition-all hover:grayscale-0 hover:opacity-100">
-                            {/* Simple Text Logos for now - Darker for Light Mode */}
-                            <span className="text-xl font-bold italic tracking-tighter text-slate-700">STRAVA</span>
-                            <span className="text-xl font-bold tracking-tight text-slate-700">GARMIN</span>
-                            <span className="text-xl font-bold text-slate-700 whitespace-nowrap">TrainingPeaks</span>
+                            <span className="text-xl font-bold text-slate-700 whitespace-nowrap">Apple Health</span>
+                            <span className="text-xl font-bold text-slate-700 whitespace-nowrap">Google Fit</span>
+                            <span className="text-xl font-bold text-slate-700 whitespace-nowrap">Apple Watch</span>
                         </div>
                     </div>
                 </div>
