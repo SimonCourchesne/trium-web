@@ -12,7 +12,7 @@ export default function Home() {
         <main className="min-h-screen bg-slate-50">
             <Header />
             <Hero />
-            <div className="relative -mt-48 h-48 bg-gradient-to-b from-transparent to-black pointer-events-none z-10" />
+            <div className="relative -mt-[220px] h-[320px] bg-gradient-to-b from-transparent to-black pointer-events-none z-10" />
             <FeatureShowcase />
             <PlanCreationShowcase />
             <AppShowcase />
