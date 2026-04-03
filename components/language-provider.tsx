@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useSyncExternalStore } from "react";
 import { translations, Language } from "@/lib/translations";
 
 type LanguageContextType = {
@@ -11,24 +11,57 @@ type LanguageContextType = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [language, setLanguage] = useState<Language>(() => {
-        if (typeof window === "undefined") {
-            return "en";
-        }
+const LANGUAGE_STORAGE_KEY = "language";
+const LANGUAGE_EVENT = "teo-language-change";
 
-        const savedLang = window.localStorage.getItem("language");
-        return savedLang === "en" || savedLang === "fr" ? savedLang : "en";
-    });
+function subscribe(onStoreChange: () => void) {
+    if (typeof window === "undefined") {
+        return () => undefined;
+    }
+
+    const handleStorage = (event: StorageEvent) => {
+        if (event.key === null || event.key === LANGUAGE_STORAGE_KEY) {
+            onStoreChange();
+        }
+    };
+
+    const handleLanguageChange = () => {
+        onStoreChange();
+    };
+
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener(LANGUAGE_EVENT, handleLanguageChange);
+
+    return () => {
+        window.removeEventListener("storage", handleStorage);
+        window.removeEventListener(LANGUAGE_EVENT, handleLanguageChange);
+    };
+}
+
+function getSnapshot(): Language {
+    if (typeof window === "undefined") {
+        return "en";
+    }
+
+    const savedLang = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    return savedLang === "en" || savedLang === "fr" ? savedLang : "en";
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+    const language = useSyncExternalStore<Language>(subscribe, getSnapshot, () => "en");
 
     const handleSetLanguage = (lang: Language) => {
-        setLanguage(lang);
-        localStorage.setItem("language", lang);
+        if (typeof window === "undefined") {
+            return;
+        }
+
+        window.localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+        window.dispatchEvent(new Event(LANGUAGE_EVENT));
     };
 
     const t = (path: string) => {
         const keys = path.split(".");
-        let current: unknown = translations[language];
+        let current: unknown = translations[language as keyof typeof translations];
 
         for (const key of keys) {
             if (typeof current !== "object" || current === null || !(key in current)) {
