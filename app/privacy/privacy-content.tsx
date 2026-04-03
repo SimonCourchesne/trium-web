@@ -6,6 +6,7 @@ import {
     Bot,
     Database,
     Download,
+    FileDown,
     FileText,
     HeartPulse,
     Lock,
@@ -96,6 +97,13 @@ type PolicyContent = {
             body: string;
             emailLabel: string;
             email: string;
+        };
+        download: {
+            title: string;
+            body: string;
+            cta: string;
+            filename: string;
+            url: string;
         };
     };
 };
@@ -365,6 +373,13 @@ const content: Record<"en" | "fr", PolicyContent> = {
                 emailLabel: "General contact",
                 email: "hello@teocoaching.ca",
             },
+            download: {
+                title: "Download a PDF copy",
+                body: "Save a branded PDF version of this privacy policy for registration, legal review, or offline reference.",
+                cta: "Download Privacy Policy PDF",
+                filename: "teo-privacy-policy-en.pdf",
+                url: "/privacy-policy-en.pdf",
+            },
         },
     },
     fr: {
@@ -612,6 +627,13 @@ const content: Record<"en" | "fr", PolicyContent> = {
                 emailLabel: "Contact général",
                 email: "hello@teocoaching.ca",
             },
+            download: {
+                title: "Télécharger une copie PDF",
+                body: "Enregistrez une version PDF de marque de cette politique de confidentialité pour l'inscription, la révision juridique ou la consultation hors ligne.",
+                cta: "Télécharger la politique en PDF",
+                filename: "teo-politique-confidentialite-fr.pdf",
+                url: "/privacy-policy-fr.pdf",
+            },
         },
     },
 };
@@ -835,6 +857,24 @@ export function PrivacyContent() {
                                     {policy.sections.contact.email}
                                 </div>
                             </div>
+                        </div>
+                    </section>
+
+                    <section className="mt-8 glass-card p-8">
+                        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                            <div className="max-w-2xl">
+                                <h2 className="text-2xl font-bold text-ink">{policy.sections.download.title}</h2>
+                                <p className="mt-4 text-slate-600">{policy.sections.download.body}</p>
+                            </div>
+
+                            <a
+                                href={policy.sections.download.url}
+                                download={policy.sections.download.filename}
+                                className="inline-flex items-center justify-center gap-3 rounded-full border border-slate-900 bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+                            >
+                                <FileDown className="h-4 w-4" />
+                                {policy.sections.download.cta}
+                            </a>
                         </div>
                     </section>
                 </Container>
