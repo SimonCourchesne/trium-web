@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { translations, Language } from "@/lib/translations";
 
 type LanguageContextType = {
@@ -12,14 +12,14 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [language, setLanguage] = useState<Language>("en");
+    const [language, setLanguage] = useState<Language>(() => {
+        if (typeof window === "undefined") {
+            return "en";
+        }
 
-    // useEffect(() => {
-    //     const savedLang = localStorage.getItem("language") as Language;
-    //     if (savedLang && (savedLang === "en" || savedLang === "fr")) {
-    //         setLanguage(savedLang);
-    //     }
-    // }, []);
+        const savedLang = window.localStorage.getItem("language");
+        return savedLang === "en" || savedLang === "fr" ? savedLang : "en";
+    });
 
     const handleSetLanguage = (lang: Language) => {
         setLanguage(lang);
@@ -28,17 +28,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
     const t = (path: string) => {
         const keys = path.split(".");
-        let current: any = translations[language];
+        let current: unknown = translations[language];
 
         for (const key of keys) {
-            if (current[key] === undefined) {
+            if (typeof current !== "object" || current === null || !(key in current)) {
                 console.warn(`Translation missing for key: ${path} in language: ${language}`);
                 return path;
             }
-            current = current[key];
+            current = (current as Record<string, unknown>)[key];
         }
 
-        return current as string;
+        return typeof current === "string" ? current : path;
     };
 
     return (
