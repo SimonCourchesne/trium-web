@@ -368,38 +368,38 @@ const content: Record<"en" | "fr", PolicyContent> = {
         },
     },
     fr: {
-        badge: "Politique de confidentialite de Teo",
-        title: "Des termes clairs sur la maniere dont Teo traite vos donnees d'entrainement, de sante et de services connectes.",
+        badge: "Politique de confidentialité de Teo",
+        title: "Des termes clairs sur la manière dont Teo traite vos données d'entraînement, de santé et de services connectés.",
         subtitle:
-            "Cette politique s'applique a l'application mobile Teo, aux integrations de services connectes et a ce site web. Elle reflete l'etat actuel du produit et de la feuille de route des integrations au 3 avril 2026.",
-        effectiveDateLabel: "Date d'effet",
-        effectiveDateValue: "14 fevrier 2026",
-        updatedDateLabel: "Derniere mise a jour",
+            "Cette politique s'applique à l'application mobile Teo, aux intégrations de services connectés et à ce site web. Elle reflète l'état actuel du produit et de la feuille de route des intégrations au 3 avril 2026.",
+        effectiveDateLabel: "Date d’effet",
+        effectiveDateValue: "14 février 2026",
+        updatedDateLabel: "Dernière mise à jour",
         updatedDateValue: "3 avril 2026",
         quickLinks: [
-            { href: "#information-we-collect", label: "Donnees collectees" },
-            { href: "#how-we-use-data", label: "Utilisation des donnees" },
-            { href: "#integrations-and-sharing", label: "Integrations" },
+            { href: "#information-we-collect", label: "Données collectées" },
+            { href: "#how-we-use-data", label: "Utilisation des données" },
+            { href: "#integrations-and-sharing", label: "Intégrations" },
             { href: "#your-rights", label: "Vos droits" },
             { href: "#contact-us", label: "Contact" },
         ],
         commitments: [
             {
-                title: "Aucune vente de donnees",
+                title: "Aucune vente de données",
                 description:
-                    "Nous ne vendons pas vos donnees personnelles ni vos donnees de sante a des annonceurs, courtiers ou autres tiers.",
+                    "Nous ne vendons pas vos données personnelles ni vos données de santé à des annonceurs, courtiers ou autres tiers.",
                 icon: ICONS.noSale,
             },
             {
-                title: "Integrations fondees sur le consentement",
+                title: "Intégrations fondées sur le consentement",
                 description:
-                    "La synchronisation avec des services connectes a lieu seulement lorsque vous autorisez Teo a acceder a un fournisseur ou a lui envoyer des donnees.",
+                    "La synchronisation avec des services connectés a lieu seulement lorsque vous autorisez Teo à accéder à un fournisseur ou à lui envoyer des données.",
                 icon: ICONS.integrations,
             },
             {
-                title: "Droits d'acces et de suppression",
+                title: "Droits d'accès et de suppression",
                 description:
-                    "La politique de confidentialite decrit les droits que Teo vise a prendre en charge, notamment l'acces, la correction, la portabilite et la suppression.",
+                    "La politique de confidentialité décrit les droits que Teo vise à prendre en charge, notamment l'accès, la correction, la portabilité et la suppression.",
                 icon: ICONS.rights,
             },
         ],
@@ -407,148 +407,148 @@ const content: Record<"en" | "fr", PolicyContent> = {
             introduction: {
                 title: "1. Introduction",
                 paragraphs: [
-                    "Bienvenue chez Teo (\"nous\", \"notre\" ou \"nos\"). Nous nous engageons a proteger votre vie privee et a proteger vos renseignements personnels, de sante et de condition physique lorsque vous utilisez l'application mobile Teo, notre site web et les services connectes que vous choisissez d'autoriser.",
-                    "En utilisant Teo, vous consentez aux pratiques de donnees decrites dans cette politique. Si vous n'acceptez pas cette politique de confidentialite, veuillez ne pas utiliser l'application ou le site web.",
+                    "Bienvenue chez Teo (« nous », « notre » ou « nos »). Nous nous engageons à protéger votre vie privée et à protéger vos renseignements personnels, de santé et de condition physique lorsque vous utilisez l'application mobile Teo, notre site web et les services connectés que vous choisissez d'autoriser.",
+                    "En utilisant Teo, vous consentez aux pratiques de données décrites dans cette politique. Si vous n'acceptez pas cette politique de confidentialité, veuillez ne pas utiliser l'application ou le site web.",
                 ],
             },
             information: {
-                title: "2. Donnees que nous collectons",
+                title: "2. Données que nous collectons",
                 intro:
-                    "Nous collectons les donnees necessaires pour fournir une experience de coaching IA personnalisee, exploiter le produit et prendre en charge les integrations autorisees.",
+                    "Nous collectons les données nécessaires pour fournir une expérience de coaching IA personnalisée, exploiter le produit et prendre en charge les intégrations autorisées.",
                 cards: [
                     {
                         title: "Renseignements personnels",
                         description:
-                            "Des donnees d'identite comme votre nom, votre adresse courriel, votre date de naissance, votre photo de profil, votre taille, votre poids, votre genre et votre age lorsque cela est necessaire pour personnaliser le coaching et les calculs de charge d'entrainement.",
+                            "Des données d'identité comme votre nom, votre adresse courriel, votre date de naissance, votre photo de profil, votre taille, votre poids, votre genre et votre âge lorsque cela est nécessaire pour personnaliser le coaching et les calculs de charge d'entraînement.",
                         icon: ICONS.profile,
                     },
                     {
-                        title: "Donnees de sante et de condition physique",
+                        title: "Données de santé et de condition physique",
                         description:
-                            "Entrainements, type de sport, distances, durees, denivele, frequence cardiaque, frequence cardiaque au repos, VFC, puissance, vitesse, cadence, traces GPS et donnees de sommeil ou de recuperation lorsqu'elles sont synchronisees.",
+                            "Entraînements, type de sport, distances, durées, dénivelé, fréquence cardiaque, fréquence cardiaque au repos, VFC, puissance, vitesse, cadence, traces GPS et données de sommeil ou de récupération lorsqu'elles sont synchronisées.",
                         icon: ICONS.health,
                     },
                     {
-                        title: "Donnees techniques et d'appareil",
+                        title: "Données techniques et d'appareil",
                         description:
-                            "Modele d'appareil, version du systeme d'exploitation, identifiants, adresse IP, utilisation des fonctionnalites et donnees de plantage ou de fiabilite necessaires au fonctionnement et a l'amelioration du produit.",
+                            "Modèle d'appareil, version du système d'exploitation, identifiants, adresse IP, utilisation des fonctionnalités et données de plantage ou de fiabilité nécessaires au fonctionnement et à l'amélioration du produit.",
                         icon: ICONS.device,
                     },
                 ],
             },
             usage: {
-                title: "3. Comment nous utilisons vos donnees",
+                title: "3. Comment nous utilisons vos données",
                 intro:
-                    "Nous utilisons vos donnees uniquement pour fournir et ameliorer les fonctionnalites de coaching de Teo et les flux des services connectes. Nous ne vendons pas vos donnees personnelles ni vos donnees de sante.",
+                    "Nous utilisons vos données uniquement pour fournir et améliorer les fonctionnalités de coaching de Teo et les flux des services connectés. Nous ne vendons pas vos données personnelles ni vos données de santé.",
                 cards: [
                     {
-                        title: "Generation de plans",
+                        title: "Génération de plans",
                         description:
-                            "L'historique d'entrainement, les biometries et les objectifs sont traites pour generer des horaires personnalises et des entrainements structures.",
+                            "L'historique d'entraînement, les biométries et les objectifs sont traités pour générer des horaires personnalisés et des entraînements structurés.",
                         icon: ICONS.plan,
                     },
                     {
                         title: "Coaching adaptatif",
                         description:
-                            "Les entrainements completes et les signaux de recuperation sont utilises pour ajuster la charge, l'intensite et les recommandations futures.",
+                            "Les entraînements complétés et les signaux de récupération sont utilisés pour ajuster la charge, l'intensité et les recommandations futures.",
                         icon: ICONS.adaptation,
                     },
                     {
                         title: "Coach Chat",
                         description:
-                            "Le contexte de vos entrainements recents et les informations de profil aident Teo a repondre a vos questions et a fournir des conseils pertinents.",
+                            "Le contexte de vos entraînements récents et les informations de profil aident Teo à répondre à vos questions et à fournir des conseils pertinents.",
                         icon: ICONS.chat,
                     },
                     {
-                        title: "Synchronisation des integrations",
+                        title: "Synchronisation des intégrations",
                         description:
-                            "Les connexions a des fournisseurs autorises servent a publier des entrainements planifies, importer des activites completes et rapprocher l'entrainement prevu de l'entrainement realise.",
+                            "Les connexions à des fournisseurs autorisés servent à publier des entraînements planifiés, importer des activités complétées et rapprocher l'entraînement prévu de l'entraînement réalisé.",
                         icon: ICONS.sync,
                     },
                 ],
             },
             integrations: {
-                title: "4. Integrations tierces et partage de donnees",
+                title: "4. Intégrations tierces et partage de données",
                 intro:
-                    "Nous partageons des informations uniquement avec des sous-traitants de confiance, les fournisseurs que vous choisissez de connecter ou lorsque la loi l'exige. Les cartes ci-dessous decrivent les fournisseurs de services actuels de Teo et les integrations directes ou conditionnelles planifiees qui importent pour l'examen produit et vie privee.",
+                    "Nous partageons des informations uniquement avec des sous-traitants de confiance, les fournisseurs que vous choisissez de connecter ou lorsque la loi l'exige. Les cartes ci-dessous décrivent les fournisseurs de services actuels de Teo et les intégrations directes ou conditionnelles planifiées qui importent pour l'examen produit et vie privée.",
                 note:
-                    "Les integrations directes seront deployees progressivement a mesure que Teo depassera les flux de livraison intermediaires.",
+                    "Les intégrations directes seront déployées progressivement à mesure que Teo dépassera les flux de livraison intermédiaires.",
                 cards: [
                     {
                         title: "Supabase",
                         status: "Fournisseur de service actif",
                         description:
-                            "Supabase fournit l'hebergement securise de la base de donnees infonuagique, l'authentification et le stockage principal des comptes, entrainements et donnees de synchronisation de Teo.",
+                            "Supabase fournit l'hébergement sécurisé de la base de données infonuagique, l'authentification et le stockage principal des comptes, entraînements et données de synchronisation de Teo.",
                         icon: ICONS.database,
                     },
                     {
                         title: "Google Gemini",
                         status: "Fournisseur de service actif",
                         description:
-                            "Google Gemini alimente la generation de plans et le contenu de coaching. Les donnees envoyees pour ces fonctionnalites sont reduites au minimum et anonymisees lorsque possible, puis traitees selon les engagements de confidentialite entreprise de Google.",
+                            "Google Gemini alimente la génération de plans et le contenu de coaching. Les données envoyées pour ces fonctionnalités sont réduites au minimum et anonymisées lorsque possible, puis traitées selon les engagements de confidentialité entreprise de Google.",
                         icon: ICONS.plan,
                     },
                     {
                         title: "Intervals.icu",
-                        status: "Planifie / en deploiement",
+                        status: "Planifié / en déploiement",
                         description:
-                            "Si vous connectez Intervals.icu, Teo pourra publier des entrainements planifies dans votre calendrier Intervals et, dans des phases ulterieures, lire des donnees limitees de calendrier ou d'activite propres a Intervals pour rapprocher l'entrainement prevu de l'entrainement realise. Intervals.icu sert de courtier de livraison a court terme pendant que des integrations directes plus propres continuent d'etre deployees.",
+                            "Si vous connectez Intervals.icu, Teo pourra publier des entraînements planifiés dans votre calendrier Intervals et, dans des phases ultérieures, lire des données limitées de calendrier ou d'activité propres à Intervals pour rapprocher l'entraînement prévu de l'entraînement réalisé. Intervals.icu sert de courtier de livraison à court terme pendant que des intégrations directes plus propres continuent d'être déployées.",
                         icon: ICONS.route,
                         featured: true,
                     },
                     {
                         title: "API Strava",
-                        status: "Integration directe planifiee",
+                        status: "Intégration directe planifiée",
                         description:
-                            "Strava est prevu comme source directe d'import d'activites completes et de synchronisation pilotee par webhooks. Les donnees obtenues via Strava servent a analyser votre progression dans Teo et ne sont pas utilisees pour entrainer des modeles IA globaux.",
+                            "Strava est prévu comme source directe d'import d'activités complétées et de synchronisation pilotée par webhooks. Les données obtenues via Strava servent à analyser votre progression dans Teo et ne sont pas utilisées pour entraîner des modèles IA globaux.",
                         icon: ICONS.adaptation,
                     },
                     {
                         title: "Garmin Connect",
-                        status: "Integration directe planifiee",
+                        status: "Intégration directe planifiée",
                         description:
-                            "Garmin est la voie directe a long terme pour la livraison d'entrainements et la synchronisation d'activites. Si l'integration est approuvee et activee, Teo respectera les restrictions de Garmin en matiere de cache, de permissions et de retention.",
+                            "Garmin est la voie directe à long terme pour la livraison d'entraînements et la synchronisation d'activités. Si l'intégration est approuvée et activée, Teo respectera les restrictions de Garmin en matière de cache, de permissions et de rétention.",
                         icon: ICONS.integrations,
                     },
                     {
                         title: "Apple HealthKit et Google Health Connect",
-                        status: "Planifie / conditionnel",
+                        status: "Planifié / conditionnel",
                         description:
-                            "Lorsqu'ils seront actives, nous demanderons seulement les types de donnees necessaires a l'analyse de l'entrainement, comme les entrainements, la frequence cardiaque et le sommeil. Ces donnees ne sont jamais utilisees pour la publicite, le marketing ou l'exploration generalisee basee sur l'usage.",
+                            "Lorsqu'ils seront activés, nous demanderons seulement les types de données nécessaires à l'analyse de l'entraînement, comme les entraînements, la fréquence cardiaque et le sommeil. Ces données ne sont jamais utilisées pour la publicité, le marketing ou l'exploration généralisée basée sur l'usage.",
                         icon: ICONS.health,
                     },
                     {
                         title: "MyWhoosh",
-                        status: "Integration beta planifiee",
+                        status: "Intégration bêta planifiée",
                         description:
-                            "MyWhoosh est une voie directe planifiee pour la livraison d'entrainements cyclistes aux athletes pris en charge. Elle ne sera activee que lorsque l'integration sera assez stable pour permettre un televersement et une planification fiables.",
+                            "MyWhoosh est une voie directe planifiée pour la livraison d'entraînements cyclistes aux athlètes pris en charge. Elle ne sera activée que lorsque l'intégration sera assez stable pour permettre un téléversement et une planification fiables.",
                         icon: ICONS.route,
                     },
                 ],
                 footer:
-                    "Si vous autorisez Intervals.icu ou de futures integrations de fournisseurs, Teo n'utilisera que les portees et les donnees necessaires a la fonctionnalite activee. Si vous connectez aussi des services en aval dans une autre plateforme, ces services restent regis par les permissions et politiques de confidentialite propres a cette plateforme, sauf si vous autorisez separement une integration directe Teo avec ce fournisseur.",
+                    "Si vous autorisez Intervals.icu ou de futures intégrations de fournisseurs, Teo n'utilisera que les portées et les données nécessaires à la fonctionnalité activée. Si vous connectez aussi des services en aval dans une autre plateforme, ces services restent régis par les permissions et politiques de confidentialité propres à cette plateforme, sauf si vous autorisez séparément une intégration directe Teo avec ce fournisseur.",
             },
             security: {
-                title: "5. Securite des donnees",
+                title: "5. Sécurité des données",
                 intro:
-                    "Nous mettons en place des mesures techniques et organisationnelles destinees a proteger vos donnees et a limiter l'acces a ce qui est necessaire pour exploiter le service.",
+                    "Nous mettons en place des mesures techniques et organisationnelles destinées à protéger vos données et à limiter l'accès à ce qui est nécessaire pour exploiter le service.",
                 cards: [
                     {
                         title: "Chiffrement",
                         description:
-                            "Les donnees sont chiffre es en transit avec TLS et protegees au repos dans notre base de donnees et notre infrastructure.",
+                            "Les données sont chiffrées en transit avec TLS et protégées au repos dans notre base de données et notre infrastructure.",
                         icon: ICONS.lock,
                     },
                     {
                         title: "Row Level Security",
                         description:
-                            "Les politiques de base de donnees sont concues pour que les utilisateurs ne puissent acceder qu'a leurs propres enregistrements, sauf lorsqu'un chemin de service privilegie est necessaire.",
+                            "Les politiques de base de données sont conçues pour que les utilisateurs ne puissent accéder qu'à leurs propres enregistrements, sauf lorsqu'un chemin de service privilégié est nécessaire.",
                         icon: ICONS.database,
                     },
                     {
-                        title: "Controle d'acces",
+                        title: "Contrôle d'accès",
                         description:
-                            "L'acces interne est limite au personnel autorise et aux flux valides des fournisseurs de service.",
+                            "L'accès interne est limité au personnel autorisé et aux flux valides des fournisseurs de service.",
                         icon: ICONS.server,
                     },
                 ],
@@ -556,60 +556,60 @@ const content: Record<"en" | "fr", PolicyContent> = {
             rights: {
                 title: "6. Vos droits",
                 intro:
-                    "Peu importe votre lieu de residence, Teo vise a prendre en charge les droits d'acces, de suppression, de portabilite et de correction d'une maniere compatible avec les lois applicables en matiere de vie privee, y compris les principes du RGPD et du CCPA.",
+                    "Peu importe votre lieu de résidence, Teo vise à prendre en charge les droits d'accès, de suppression, de portabilité et de correction d'une manière compatible avec les lois applicables en matière de vie privée, y compris les principes du RGPD et du CCPA.",
                 cards: [
                     {
-                        title: "Droit d'acces",
+                        title: "Droit d'accès",
                         description:
-                            "Vous pouvez demander une copie des donnees personnelles que nous detenons a votre sujet.",
+                            "Vous pouvez demander une copie des données personnelles que nous détenons à votre sujet.",
                         icon: ICONS.database,
                     },
                     {
-                        title: "Droit a la suppression",
+                        title: "Droit à la suppression",
                         description:
-                            "Vous pouvez demander la suppression de votre compte et des donnees Teo associees, y compris via le flux de suppression de compte dans l'application lorsqu'il est disponible.",
+                            "Vous pouvez demander la suppression de votre compte et des données Teo associées, y compris via le flux de suppression de compte dans l'application lorsqu'il est disponible.",
                         icon: ICONS.trash,
                     },
                     {
-                        title: "Droit a la portabilite",
+                        title: "Droit à la portabilité",
                         description:
-                            "Vous pouvez demander l'exportation de votre historique d'entrainement et des donnees de compte connexes dans des formats standards lorsque c'est possible.",
+                            "Vous pouvez demander l'exportation de votre historique d'entraînement et des données de compte connexes dans des formats standards lorsque c'est possible.",
                         icon: ICONS.download,
                     },
                     {
                         title: "Droit de rectification",
                         description:
-                            "Vous pouvez corriger les informations de profil inexactes et demander la correction de donnees incompletes ou inexactes.",
+                            "Vous pouvez corriger les informations de profil inexactes et demander la correction de données incomplètes ou inexactes.",
                         icon: ICONS.sync,
                     },
                 ],
                 footer:
-                    "Vous pouvez aussi revoquer l'acces a des fournisseurs optionnels en deconnectant les integrations lorsqu'elles sont offertes et en mettant a jour les permissions chez le fournisseur concerne.",
+                    "Vous pouvez aussi révoquer l'accès à des fournisseurs optionnels en déconnectant les intégrations lorsqu'elles sont offertes et en mettant à jour les permissions chez le fournisseur concerné.",
             },
             retention: {
-                title: "7. Retention et suppression des donnees",
+                title: "7. Rétention et suppression des données",
                 items: [
-                    "Nous conservons vos donnees personnelles et de sante seulement tant que votre compte reste actif ou aussi longtemps que necessaire pour fournir le service.",
-                    "Lorsque vous supprimez votre compte ou soumettez une demande de suppression validee, votre compte et les donnees Teo associees sont supprimes de facon definitive de nos serveurs dans un delai de 30 jours.",
-                    "Des sauvegardes chiffre es peuvent conserver des donnees pendant une periode pouvant aller jusqu'a 90 jours avant d'etre ecrasees.",
-                    "Si Teo envoie des donnees a un fournisseur que vous autorisez, comme Intervals.icu ou de futures integrations directes, les pratiques de retention et de suppression de ce fournisseur peuvent aussi s'appliquer a la copie conservee sur ses systemes.",
+                    "Nous conservons vos données personnelles et de santé seulement tant que votre compte reste actif ou aussi longtemps que nécessaire pour fournir le service.",
+                    "Lorsque vous supprimez votre compte ou soumettez une demande de suppression validée, votre compte et les données Teo associées sont supprimés de façon définitive de nos serveurs dans un délai de 30 jours.",
+                    "Des sauvegardes chiffrées peuvent conserver des données pendant une période pouvant aller jusqu'à 90 jours avant d'être écrasées.",
+                    "Si Teo envoie des données à un fournisseur que vous autorisez, comme Intervals.icu ou de futures intégrations directes, les pratiques de rétention et de suppression de ce fournisseur peuvent aussi s'appliquer à la copie conservée sur ses systèmes.",
                 ],
             },
             children: {
-                title: "8. Confidentialite des enfants",
+                title: "8. Confidentialité des enfants",
                 body:
-                    "Teo n'est pas concu pour les enfants de moins de 13 ans. Nous ne recueillons pas sciemment de renseignements personnels aupres d'enfants de moins de 13 ans et, si nous apprenons que nous avons recueilli de tels renseignements, nous prendrons des mesures pour les supprimer rapidement.",
+                    "Teo n'est pas conçu pour les enfants de moins de 13 ans. Nous ne recueillons pas sciemment de renseignements personnels auprès d'enfants de moins de 13 ans et, si nous apprenons que nous avons recueilli de tels renseignements, nous prendrons des mesures pour les supprimer rapidement.",
             },
             changes: {
                 title: "9. Modifications de cette politique",
                 body:
-                    "Nous pouvons mettre a jour cette politique de confidentialite de temps a autre. Lorsque nous le faisons, nous publions la version mise a jour sur cette page et nous revoyons la date de derniere mise a jour indiquee ci-dessus.",
+                    "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Lorsque nous le faisons, nous publions la version mise à jour sur cette page et nous revoyons la date de dernière mise à jour indiquée ci-dessus.",
             },
             contact: {
                 title: "10. Nous joindre",
                 body:
-                    "Si vous avez des questions au sujet de cette politique de confidentialite, communiquez avec nous a l'adresse ci-dessous. Les flux produits lies aux droits, a la suppression et a la retention doivent etre implementes dans l'application et le backend lorsqu'ils s'appliquent.",
-                emailLabel: "Contact general",
+                    "Si vous avez des questions au sujet de cette politique de confidentialité, communiquez avec nous à l'adresse ci-dessous. Les flux produits liés aux droits, à la suppression et à la rétention doivent être implémentés dans l'application et le backend lorsqu'ils s'appliquent.",
+                emailLabel: "Contact général",
                 email: "hello@teocoaching.ca",
             },
         },
