@@ -667,15 +667,499 @@ function PolicyCard({
     );
 }
 
+function PrintPolicyCard({
+    title,
+    description,
+    tone = "default",
+}: {
+    title: string;
+    description: string;
+    tone?: "default" | "featured";
+}) {
+    return (
+        <article className={tone === "featured" ? "pdf-card pdf-card-featured" : "pdf-card"}>
+            <h3>{title}</h3>
+            <p>{description}</p>
+        </article>
+    );
+}
+
+function PrintPolicyDocument({ policy }: { policy: PolicyContent }) {
+    return (
+        <div className="privacy-print">
+            <section className="pdf-page">
+                <div className="pdf-hero">
+                    <div className="pdf-badge">{policy.badge}</div>
+                    <div className="pdf-hero-grid">
+                        <div className="pdf-brand">
+                            <img src="/teo-icon.png" alt="Teo" className="pdf-logo" />
+                            <div>
+                                <h1>{policy.title}</h1>
+                                <p>{policy.subtitle}</p>
+                            </div>
+                        </div>
+
+                        <div className="pdf-meta">
+                            <div>
+                                <span>{policy.effectiveDateLabel}</span>
+                                <strong>{policy.effectiveDateValue}</strong>
+                            </div>
+                            <div>
+                                <span>{policy.updatedDateLabel}</span>
+                                <strong>{policy.updatedDateValue}</strong>
+                            </div>
+                            <div>
+                                <span>{policy.sections.contact.emailLabel}</span>
+                                <strong className="pdf-email">{policy.sections.contact.email}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="pdf-summary-grid">
+                        {policy.commitments.map((item, index) => (
+                            <PrintPolicyCard
+                                key={item.title}
+                                title={item.title}
+                                description={item.description}
+                                tone={index === 1 ? "featured" : "default"}
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                <div className="pdf-section">
+                    <h2>{policy.sections.introduction.title}</h2>
+                    {policy.sections.introduction.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                    ))}
+                </div>
+
+                <div className="pdf-section">
+                    <h2>{policy.sections.information.title}</h2>
+                    <p>{policy.sections.information.intro}</p>
+                    <div className="pdf-grid pdf-grid-3">
+                        {policy.sections.information.cards.map((item) => (
+                            <PrintPolicyCard key={item.title} title={item.title} description={item.description} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="pdf-page">
+                <div className="pdf-section">
+                    <h2>{policy.sections.usage.title}</h2>
+                    <p>{policy.sections.usage.intro}</p>
+                    <div className="pdf-grid pdf-grid-2">
+                        {policy.sections.usage.cards.map((item) => (
+                            <PrintPolicyCard key={item.title} title={item.title} description={item.description} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className="pdf-section">
+                    <div className="pdf-section-head">
+                        <div>
+                            <h2>{policy.sections.integrations.title}</h2>
+                            <p>{policy.sections.integrations.intro}</p>
+                        </div>
+                        <aside className="pdf-note">{policy.sections.integrations.note}</aside>
+                    </div>
+                    <div className="pdf-grid pdf-grid-2">
+                        {policy.sections.integrations.cards.map(({ featured, ...item }) => (
+                            <PrintPolicyCard
+                                key={item.title}
+                                title={`${item.title} · ${item.status}`}
+                                description={item.description}
+                                tone={featured ? "featured" : "default"}
+                            />
+                        ))}
+                    </div>
+                    <div className="pdf-callout">{policy.sections.integrations.footer}</div>
+                </div>
+            </section>
+
+            <section className="pdf-page">
+                <div className="pdf-section">
+                    <h2>{policy.sections.security.title}</h2>
+                    <p>{policy.sections.security.intro}</p>
+                    <div className="pdf-grid pdf-grid-3">
+                        {policy.sections.security.cards.map((item) => (
+                            <PrintPolicyCard key={item.title} title={item.title} description={item.description} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className="pdf-section">
+                    <h2>{policy.sections.rights.title}</h2>
+                    <p>{policy.sections.rights.intro}</p>
+                    <div className="pdf-grid pdf-grid-2">
+                        {policy.sections.rights.cards.map((item) => (
+                            <PrintPolicyCard key={item.title} title={item.title} description={item.description} />
+                        ))}
+                    </div>
+                    <div className="pdf-subtle">{policy.sections.rights.footer}</div>
+                </div>
+
+                <div className="pdf-section">
+                    <h2>{policy.sections.retention.title}</h2>
+                    <ul className="pdf-list">
+                        {policy.sections.retention.items.map((item) => (
+                            <li key={item}>{item}</li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="pdf-grid pdf-grid-2">
+                    <div className="pdf-section pdf-section-compact">
+                        <h2>{policy.sections.children.title}</h2>
+                        <p>{policy.sections.children.body}</p>
+                    </div>
+                    <div className="pdf-section pdf-section-compact">
+                        <h2>{policy.sections.changes.title}</h2>
+                        <p>{policy.sections.changes.body}</p>
+                    </div>
+                </div>
+
+                <div className="pdf-section pdf-contact">
+                    <h2>{policy.sections.contact.title}</h2>
+                    <p>{policy.sections.contact.body}</p>
+                    <div className="pdf-contact-row">
+                        <span>{policy.sections.contact.emailLabel}</span>
+                        <strong>{policy.sections.contact.email}</strong>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
 export function PrivacyContent() {
     const { language } = useLanguage();
     const policy = content[language];
 
     return (
         <div className="min-h-screen bg-slate-50">
+            <style jsx global>{`
+                @media screen {
+                    .privacy-print {
+                        display: none;
+                    }
+                }
+
+                @page {
+                    size: Letter;
+                    margin: 0.45in;
+                }
+
+                @media print {
+                    html,
+                    body {
+                        background: #ffffff !important;
+                    }
+
+                    body {
+                        -webkit-print-color-adjust: exact;
+                        print-color-adjust: exact;
+                    }
+
+                    header,
+                    footer,
+                    .privacy-screen {
+                        display: none !important;
+                    }
+
+                    .privacy-print {
+                        display: block;
+                        color: #0f172a;
+                        font-family:
+                            Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                    }
+
+                    .pdf-page {
+                        display: contents;
+                    }
+
+                    .pdf-hero,
+                    .pdf-section,
+                    .pdf-card,
+                    .pdf-note,
+                    .pdf-callout,
+                    .pdf-subtle {
+                        break-inside: avoid;
+                    }
+
+                    .pdf-hero {
+                        position: relative;
+                        overflow: hidden;
+                        border: 1px solid rgba(249, 115, 22, 0.24);
+                        border-radius: 28px;
+                        padding: 28px;
+                        background:
+                            radial-gradient(circle at top left, rgba(249, 115, 22, 0.14), transparent 36%),
+                            radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.08), transparent 34%),
+                            #fffdfb;
+                        box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+                    }
+
+                    .pdf-badge {
+                        display: inline-flex;
+                        align-items: center;
+                        border-radius: 999px;
+                        padding: 7px 12px;
+                        background: rgba(249, 115, 22, 0.1);
+                        border: 1px solid rgba(249, 115, 22, 0.14);
+                        color: #ea580c;
+                        font-size: 11px;
+                        font-weight: 700;
+                        letter-spacing: 0.08em;
+                        text-transform: uppercase;
+                    }
+
+                    .pdf-hero-grid {
+                        display: grid;
+                        grid-template-columns: minmax(0, 1fr) 240px;
+                        gap: 20px;
+                        margin-top: 18px;
+                        align-items: start;
+                    }
+
+                    .pdf-brand {
+                        display: grid;
+                        grid-template-columns: 72px minmax(0, 1fr);
+                        gap: 16px;
+                        align-items: center;
+                    }
+
+                    .pdf-logo {
+                        width: 72px;
+                        height: 72px;
+                        border-radius: 20px;
+                        display: block;
+                        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+                    }
+
+                    .pdf-brand h1 {
+                        margin: 0;
+                        font-size: 34px;
+                        line-height: 1.04;
+                        letter-spacing: -0.03em;
+                        font-weight: 800;
+                        color: #0f172a;
+                    }
+
+                    .pdf-brand p {
+                        margin: 8px 0 0;
+                        font-size: 13px;
+                        line-height: 1.6;
+                        color: #475569;
+                    }
+
+                    .pdf-meta {
+                        border: 1px solid #e2e8f0;
+                        background: rgba(255, 255, 255, 0.88);
+                        border-radius: 22px;
+                        padding: 16px 18px;
+                    }
+
+                    .pdf-meta div + div {
+                        margin-top: 13px;
+                        padding-top: 13px;
+                        border-top: 1px solid #e2e8f0;
+                    }
+
+                    .pdf-meta span {
+                        display: block;
+                        font-size: 10px;
+                        line-height: 1.2;
+                        letter-spacing: 0.08em;
+                        text-transform: uppercase;
+                        color: #64748b;
+                        font-weight: 700;
+                    }
+
+                    .pdf-meta strong {
+                        display: block;
+                        margin-top: 4px;
+                        font-size: 15px;
+                        line-height: 1.35;
+                        color: #0f172a;
+                        font-weight: 700;
+                    }
+
+                    .pdf-meta .pdf-email {
+                        font-size: 13px;
+                        color: #ea580c;
+                    }
+
+                    .pdf-summary-grid,
+                    .pdf-grid {
+                        display: grid;
+                        gap: 14px;
+                    }
+
+                    .pdf-summary-grid {
+                        grid-template-columns: repeat(3, minmax(0, 1fr));
+                        margin-top: 18px;
+                    }
+
+                    .pdf-grid-2 {
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                    }
+
+                    .pdf-grid-3 {
+                        grid-template-columns: repeat(3, minmax(0, 1fr));
+                    }
+
+                    .pdf-card {
+                        border-radius: 22px;
+                        border: 1px solid rgba(226, 232, 240, 0.9);
+                        background: rgba(255, 255, 255, 0.94);
+                        padding: 16px 18px;
+                        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+                    }
+
+                    .pdf-card-featured {
+                        border-color: rgba(249, 115, 22, 0.22);
+                        background: linear-gradient(180deg, rgba(255, 247, 237, 0.98), rgba(255, 255, 255, 0.98));
+                    }
+
+                    .pdf-card h3 {
+                        margin: 0;
+                        font-size: 13px;
+                        line-height: 1.4;
+                        font-weight: 700;
+                        color: #0f172a;
+                    }
+
+                    .pdf-card p {
+                        margin: 8px 0 0;
+                        font-size: 11px;
+                        line-height: 1.65;
+                        color: #475569;
+                    }
+
+                    .pdf-section {
+                        margin-top: 16px;
+                        border-radius: 24px;
+                        border: 1px solid rgba(226, 232, 240, 0.92);
+                        background: #ffffff;
+                        padding: 18px 20px 20px;
+                        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+                    }
+
+                    .pdf-section-compact {
+                        margin-top: 16px;
+                    }
+
+                    .pdf-section h2 {
+                        margin: 0;
+                        font-size: 21px;
+                        line-height: 1.25;
+                        font-weight: 800;
+                        letter-spacing: -0.02em;
+                        color: #0f172a;
+                    }
+
+                    .pdf-section p {
+                        margin: 10px 0 0;
+                        font-size: 12px;
+                        line-height: 1.72;
+                        color: #475569;
+                    }
+
+                    .pdf-section-head {
+                        display: grid;
+                        grid-template-columns: minmax(0, 1fr) 210px;
+                        gap: 16px;
+                        align-items: start;
+                    }
+
+                    .pdf-note {
+                        border-radius: 18px;
+                        border: 1px solid rgba(249, 115, 22, 0.16);
+                        background: rgba(249, 115, 22, 0.08);
+                        padding: 12px 14px;
+                        font-size: 11px;
+                        line-height: 1.65;
+                        color: #c2410c;
+                    }
+
+                    .pdf-callout,
+                    .pdf-subtle {
+                        margin-top: 14px;
+                        border-radius: 18px;
+                        padding: 14px 16px;
+                        font-size: 11px;
+                        line-height: 1.7;
+                    }
+
+                    .pdf-callout {
+                        background: #0f172a;
+                        color: #e2e8f0;
+                    }
+
+                    .pdf-subtle {
+                        border: 1px solid rgba(226, 232, 240, 0.92);
+                        background: #f8fafc;
+                        color: #475569;
+                    }
+
+                    .pdf-list {
+                        margin: 12px 0 0;
+                        padding: 0;
+                        list-style: none;
+                    }
+
+                    .pdf-list li {
+                        position: relative;
+                        margin-top: 10px;
+                        padding-left: 16px;
+                        font-size: 12px;
+                        line-height: 1.72;
+                        color: #475569;
+                    }
+
+                    .pdf-list li::before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        top: 0.55em;
+                        width: 7px;
+                        height: 7px;
+                        border-radius: 999px;
+                        background: #f97316;
+                    }
+
+                    .pdf-contact-row {
+                        margin-top: 14px;
+                        border-radius: 18px;
+                        border: 1px solid rgba(249, 115, 22, 0.18);
+                        background: rgba(255, 247, 237, 0.94);
+                        padding: 14px 16px;
+                    }
+
+                    .pdf-contact-row span {
+                        display: block;
+                        font-size: 10px;
+                        line-height: 1.2;
+                        letter-spacing: 0.08em;
+                        text-transform: uppercase;
+                        color: #64748b;
+                        font-weight: 700;
+                    }
+
+                    .pdf-contact-row strong {
+                        display: block;
+                        margin-top: 5px;
+                        font-size: 16px;
+                        line-height: 1.4;
+                        color: #0f172a;
+                    }
+                }
+            `}</style>
             <Header />
 
-            <main className="pb-20 pt-28">
+            <main className="privacy-screen pb-20 pt-28">
                 <Container>
                     <section className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/70 px-6 py-10 shadow-xl shadow-black/5 sm:px-10">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(249,115,22,0.14),_transparent_40%),radial-gradient(circle_at_bottom_right,_rgba(15,23,42,0.08),_transparent_35%)]" />
@@ -881,6 +1365,7 @@ export function PrivacyContent() {
             </main>
 
             <Footer />
+            <PrintPolicyDocument policy={policy} />
         </div>
     );
 }
