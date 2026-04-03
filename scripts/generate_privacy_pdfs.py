@@ -274,6 +274,11 @@ def text_width(draw: ImageDraw.ImageDraw, text: str, used_font: ImageFont.FreeTy
     return int(draw.textlength(text, font=used_font))
 
 
+def line_height(used_font: ImageFont.FreeTypeFont, gap: int) -> int:
+    bbox = used_font.getbbox("Ag")
+    return bbox[3] - bbox[1] + gap
+
+
 def wrap_text(draw: ImageDraw.ImageDraw, text: str, used_font: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
     words = text.split()
     if not words:
@@ -285,11 +290,21 @@ def wrap_text(draw: ImageDraw.ImageDraw, text: str, used_font: ImageFont.FreeTyp
         candidate = f"{current} {word}"
         if text_width(draw, candidate, used_font) <= max_width:
             current = candidate
-        else:
-            lines.append(current)
-            current = word
+            continue
+        lines.append(current)
+        current = word
     lines.append(current)
     return lines
+
+
+def rounded_logo(size: int, radius: int) -> Image.Image:
+    logo = Image.open(LOGO_PATH).convert("RGBA").resize((size, size))
+    mask = Image.new("L", (size, size), 0)
+    mask_draw = ImageDraw.Draw(mask)
+    mask_draw.rounded_rectangle((0, 0, size, size), radius=radius, fill=255)
+    rounded = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    rounded.paste(logo, (0, 0), mask)
+    return rounded
 
 
 class PdfBuilder:
@@ -297,32 +312,34 @@ class PdfBuilder:
         self.policy = policy
         self.pages: list[Image.Image] = []
         self.page_no = 0
-        self.logo = Image.open(LOGO_PATH).convert("RGBA").resize((118, 118))
-        self.h1 = font(56, bold=True)
-        self.h2 = font(31, bold=True)
-        self.h3 = font(22, bold=True)
+        self.logo = rounded_logo(126, 30)
+        self.h1 = font(58, bold=True)
+        self.h2 = font(34, bold=True)
+        self.h3 = font(24, bold=True)
         self.body = font(22)
         self.body_bold = font(22, bold=True)
-        self.meta_label = font(16, bold=True)
-        self.meta_value = font(23, bold=True)
+        self.meta_label = font(15, bold=True)
+        self.meta_value = font(22, bold=True)
+        self.meta_email = font(14, bold=True)
         self.kicker = font(17, bold=True)
         self.footer_font = font(15)
         self.small = font(18)
+        self.small_bold = font(18, bold=True)
         self.new_page()
 
     def new_page(self):
         page = Image.new("RGB", (PAGE_W, PAGE_H), COLORS["paper"])
         draw = ImageDraw.Draw(page)
-        draw.rectangle((0, 0, PAGE_W, 220), fill="#FFF6EF")
-        draw.ellipse((-180, -180, 520, 420), fill="#FFE7D5")
-        draw.ellipse((1120, -80, 1760, 480), fill="#FFF0E5")
+        draw.rectangle((0, 0, PAGE_W, 260), fill="#FFF8F2")
+        draw.ellipse((-150, -220, 540, 340), fill="#FFEBDC")
+        draw.ellipse((1040, -160, 1770, 380), fill="#FFF1E7")
         self.pages.append(page)
         self.page_no += 1
         self.draw = draw
         self.y = MARGIN_Y
 
     def ensure_space(self, needed: int):
-        if self.y + needed <= PAGE_H - MARGIN_Y - 80:
+        if self.y + needed <= PAGE_H - MARGIN_Y - 86:
             return
         self.draw_footer()
         self.new_page()
@@ -332,107 +349,124 @@ class PdfBuilder:
         self.draw.line((MARGIN_X, y, PAGE_W - MARGIN_X, y), fill=COLORS["line"], width=2)
         self.draw.text((MARGIN_X, y + 16), f"Teo · {self.policy['title']}", font=self.footer_font, fill=COLORS["muted"])
         page_text = f"{self.page_no}"
-        w = text_width(self.draw, page_text, self.footer_font)
-        self.draw.text((PAGE_W - MARGIN_X - w, y + 16), page_text, font=self.footer_font, fill=COLORS["muted"])
+        width = text_width(self.draw, page_text, self.footer_font)
+        self.draw.text((PAGE_W - MARGIN_X - width, y + 16), page_text, font=self.footer_font, fill=COLORS["muted"])
 
-    def draw_wrapped_paragraph(self, text: str, x: int, width: int, font_obj, fill: str, line_gap: int = 10):
+    def measure_text_block(self, text: str, font_obj, width: int, line_gap: int, trailing_gap: int) -> tuple[list[str], int]:
         lines = wrap_text(self.draw, text, font_obj, width)
-        bbox = font_obj.getbbox("Ag")
-        line_height = bbox[3] - bbox[1] + line_gap
+        height = len(lines) * line_height(font_obj, line_gap) + trailing_gap
+        return lines, height
+
+    def draw_text_lines(self, lines: list[str], x: int, y: int, font_obj, fill: str, line_gap: int) -> int:
+        current_y = y
+        lh = line_height(font_obj, line_gap)
         for line in lines:
-            self.draw.text((x, self.y), line, font=font_obj, fill=fill)
-            self.y += line_height
-        self.y += 6
+            self.draw.text((x, current_y), line, font=font_obj, fill=fill)
+            current_y += lh
+        return current_y
 
     def draw_hero(self):
-        hero_h = 440
+        hero_h = 470
         hero_box = (MARGIN_X, self.y, PAGE_W - MARGIN_X, self.y + hero_h)
         self.draw.rounded_rectangle(hero_box, radius=42, fill=COLORS["card"], outline="#FED7AA", width=3)
-        self.draw.rounded_rectangle((MARGIN_X + 26, self.y + 26, MARGIN_X + 240, self.y + 64), radius=19, fill="#FFF0E5")
-        self.draw.text((MARGIN_X + 44, self.y + 35), self.policy["eyebrow"], font=self.kicker, fill=COLORS["orange"])
-        self.pages[-1].paste(self.logo, (MARGIN_X + 42, self.y + 98), self.logo)
-        self.draw.text((MARGIN_X + 182, self.y + 112), self.policy["title"], font=self.h1, fill=COLORS["ink"])
-        self.y = self.y + 195
-        self.draw_wrapped_paragraph(self.policy["subtitle"], MARGIN_X + 42, 820, self.body, COLORS["slate"], 12)
 
-        meta_x = PAGE_W - MARGIN_X - 330
-        meta_y = hero_box[1] + 86
-        self.draw.rounded_rectangle((meta_x, meta_y, meta_x + 248, meta_y + 210), radius=28, fill="#FFFBF8", outline=COLORS["line"], width=2)
+        eyebrow_w = max(224, text_width(self.draw, self.policy["eyebrow"], self.kicker) + 34)
+        self.draw.rounded_rectangle((MARGIN_X + 34, self.y + 30, MARGIN_X + 34 + eyebrow_w, self.y + 68), radius=19, fill="#FFF0E5")
+        self.draw.text((MARGIN_X + 52, self.y + 39), self.policy["eyebrow"], font=self.kicker, fill=COLORS["orange"])
+
+        logo_x = MARGIN_X + 40
+        logo_y = self.y + 102
+        self.pages[-1].paste(self.logo, (logo_x, logo_y), self.logo)
+
+        title_x = logo_x + 156
+        title_y = self.y + 108
+        title_width = 760
+        title_lines, _ = self.measure_text_block(self.policy["title"], self.h1, title_width, 6, 0)
+        current_y = self.draw_text_lines(title_lines, title_x, title_y, self.h1, COLORS["ink"], 6)
+
+        subtitle_lines, _ = self.measure_text_block(self.policy["subtitle"], self.body, title_width, 10, 0)
+        self.draw_text_lines(subtitle_lines, title_x, current_y + 12, self.body, COLORS["slate"], 10)
+
+        meta_x = PAGE_W - MARGIN_X - 318
+        meta_y = self.y + 92
+        meta_w = 278
+        meta_h = 224
+        self.draw.rounded_rectangle((meta_x, meta_y, meta_x + meta_w, meta_y + meta_h), radius=28, fill="#FFFBF8", outline=COLORS["line"], width=2)
         meta = [
             (self.policy["effective_label"], self.policy["effective_value"]),
             (self.policy["updated_label"], self.policy["updated_value"]),
             (self.policy["contact_label"], self.policy["contact_value"]),
         ]
-        current_y = meta_y + 24
+        current_meta_y = meta_y + 24
         for label, value in meta:
-            self.draw.text((meta_x + 22, current_y), label.upper(), font=self.meta_label, fill=COLORS["muted"])
-            current_y += 24
-            self.draw.text((meta_x + 22, current_y), value, font=self.meta_value, fill=COLORS["orange"] if "@" in value else COLORS["ink"])
-            current_y += 44
+            label_lines = wrap_text(self.draw, label.upper(), self.meta_label, meta_w - 40)
+            current_meta_y = self.draw_text_lines(label_lines, meta_x + 20, current_meta_y, self.meta_label, COLORS["muted"], 4)
+            value_font = self.meta_email if "@" in value else self.meta_value
+            value_color = COLORS["orange"] if "@" in value else COLORS["ink"]
+            value_lines = wrap_text(self.draw, value, value_font, meta_w - 40)
+            current_meta_y = self.draw_text_lines(value_lines, meta_x + 20, current_meta_y + 4, value_font, value_color, 4) + 16
 
-        summary_y = hero_box[1] + 320
-        card_w = (CONTENT_W - 24) // 3
+        summary_y = self.y + 324
+        card_w = (CONTENT_W - 28) // 3
+        card_h = 112
         for idx, (title, body_text) in enumerate(self.policy["summary"]):
-            x = MARGIN_X + idx * (card_w + 12)
-            self.draw.rounded_rectangle((x, summary_y, x + card_w, summary_y + 92), radius=24, fill="#FFFFFF", outline=COLORS["line"], width=2)
-            self.draw.text((x + 18, summary_y + 16), title, font=self.h3, fill=COLORS["ink"])
-            temp_y = summary_y + 48
-            lines = wrap_text(self.draw, body_text, self.small, card_w - 34)
-            for line in lines[:2]:
-                self.draw.text((x + 18, temp_y), line, font=self.small, fill=COLORS["slate"])
-                temp_y += 24
+            x = MARGIN_X + idx * (card_w + 14)
+            self.draw.rounded_rectangle((x, summary_y, x + card_w, summary_y + card_h), radius=24, fill="#FFFFFF", outline=COLORS["line"], width=2)
+            self.draw.text((x + 18, summary_y + 16), title, font=self.small_bold, fill=COLORS["ink"])
+            body_lines = wrap_text(self.draw, body_text, self.small, card_w - 36)
+            self.draw_text_lines(body_lines[:3], x + 18, summary_y + 48, self.small, COLORS["slate"], 5)
 
         self.y = hero_box[3] + 28
+
+    def measure_section(self, paragraphs: list[str], bullets: list[str], callout: str | None, content_w: int) -> int:
+        height = 118
+        for paragraph in paragraphs:
+            _, block_h = self.measure_text_block(paragraph, self.body, content_w, 10, 12)
+            height += block_h
+        for bullet in bullets:
+            _, block_h = self.measure_text_block(bullet, self.body, content_w - 44, 9, 12)
+            height += max(34, block_h)
+        if callout:
+            callout_lines, _ = self.measure_text_block(callout, self.small, content_w - 40, 6, 0)
+            height += 36 + len(callout_lines) * line_height(self.small, 6) + 26
+        return height + 24
 
     def draw_section(self, title: str, paragraphs: list[str] | None = None, bullets: list[str] | None = None, callout: str | None = None):
         paragraphs = paragraphs or []
         bullets = bullets or []
 
-        estimated = 130 + len(paragraphs) * 80 + len(bullets) * 86 + (120 if callout else 0)
-        self.ensure_space(estimated)
-
         box_x1 = MARGIN_X
         box_x2 = PAGE_W - MARGIN_X
+        content_x = box_x1 + 28
+        content_w = CONTENT_W - 56
+        section_h = self.measure_section(paragraphs, bullets, callout, content_w)
+        self.ensure_space(section_h)
+
         start_y = self.y
-        self.draw.rounded_rectangle((box_x1, start_y, box_x2, start_y + 10), radius=36, fill=COLORS["card"], outline=None)
-
-        self.draw.rounded_rectangle((box_x1, start_y, box_x2, start_y + estimated), radius=32, fill=COLORS["card"], outline=COLORS["line"], width=2)
-        self.draw.rounded_rectangle((box_x1 + 24, start_y + 24, box_x1 + 98, start_y + 34), radius=5, fill=COLORS["orange"])
-        self.y = start_y + 54
-        self.draw.text((box_x1 + 24, self.y), title, font=self.h2, fill=COLORS["ink"])
-        self.y += 52
-
-        content_x = box_x1 + 24
-        content_w = CONTENT_W - 48
+        bottom_y = start_y + section_h
+        self.draw.rounded_rectangle((box_x1, start_y, box_x2, bottom_y), radius=32, fill=COLORS["card"], outline=COLORS["line"], width=2)
+        self.draw.rounded_rectangle((content_x, start_y + 22, content_x + 72, start_y + 34), radius=6, fill=COLORS["orange"])
+        current_y = start_y + 54
+        self.draw.text((content_x, current_y), title, font=self.h2, fill=COLORS["ink"])
+        current_y += 56
 
         for paragraph in paragraphs:
-            self.draw_wrapped_paragraph(paragraph, content_x, content_w, self.body, COLORS["slate"], 11)
+            lines = wrap_text(self.draw, paragraph, self.body, content_w)
+            current_y = self.draw_text_lines(lines, content_x, current_y, self.body, COLORS["slate"], 10) + 12
 
         for bullet in bullets:
-            self.ensure_space(68)
-            bullet_lines = wrap_text(self.draw, bullet, self.body, content_w - 36)
-            self.draw.ellipse((content_x, self.y + 11, content_x + 10, self.y + 21), fill=COLORS["orange"])
-            bx = content_x + 26
-            for line in bullet_lines:
-                self.draw.text((bx, self.y), line, font=self.body, fill=COLORS["slate"])
-                self.y += 31
-            self.y += 8
+            lines = wrap_text(self.draw, bullet, self.body, content_w - 44)
+            bullet_center_y = current_y + 14
+            self.draw.ellipse((content_x, bullet_center_y, content_x + 10, bullet_center_y + 10), fill=COLORS["orange"])
+            current_y = self.draw_text_lines(lines, content_x + 26, current_y, self.body, COLORS["slate"], 9) + 12
 
         if callout:
-            self.ensure_space(110)
-            callout_h = 28
-            callout_lines = wrap_text(self.draw, callout, self.small, content_w - 34)
-            callout_box_h = 34 + len(callout_lines) * 26
-            self.draw.rounded_rectangle((content_x, self.y + 6, content_x + content_w, self.y + 6 + callout_box_h), radius=24, fill=COLORS["dark"])
-            ty = self.y + 24
-            for line in callout_lines:
-                self.draw.text((content_x + 18, ty), line, font=self.small, fill="#E5E7EB")
-                ty += 26
-            self.y += callout_box_h + 20
+            callout_lines = wrap_text(self.draw, callout, self.small, content_w - 40)
+            callout_h = 24 + len(callout_lines) * line_height(self.small, 6) + 18
+            self.draw.rounded_rectangle((content_x, current_y + 4, content_x + content_w, current_y + 4 + callout_h), radius=24, fill=COLORS["dark"])
+            self.draw_text_lines(callout_lines, content_x + 20, current_y + 22, self.small, "#E5E7EB", 6)
 
-        bottom_y = self.y + 20
-        self.draw.rounded_rectangle((box_x1, start_y, box_x2, bottom_y), radius=32, fill=None, outline=COLORS["line"], width=2)
-        self.y = bottom_y + 22
+        self.y = bottom_y + 24
 
     def build(self):
         self.draw_hero()
