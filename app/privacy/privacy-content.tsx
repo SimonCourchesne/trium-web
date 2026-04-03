@@ -667,168 +667,134 @@ function PolicyCard({
     );
 }
 
-function PrintPolicyCard({
-    title,
-    description,
-    tone = "default",
-}: {
-    title: string;
-    description: string;
-    tone?: "default" | "featured";
-}) {
-    return (
-        <article className={tone === "featured" ? "pdf-card pdf-card-featured" : "pdf-card"}>
-            <h3>{title}</h3>
-            <p>{description}</p>
-        </article>
-    );
-}
-
 function PrintPolicyDocument({ policy }: { policy: PolicyContent }) {
     return (
         <div className="privacy-print">
-            <section className="pdf-page">
-                <div className="pdf-hero">
-                    <div className="pdf-badge">{policy.badge}</div>
-                    <div className="pdf-hero-grid">
-                        <div className="pdf-brand">
-                            <img src="/teo-icon.png" alt="Teo" className="pdf-logo" />
-                            <div>
-                                <h1>{policy.title}</h1>
-                                <p>{policy.subtitle}</p>
-                            </div>
-                        </div>
-
-                        <div className="pdf-meta">
-                            <div>
-                                <span>{policy.effectiveDateLabel}</span>
-                                <strong>{policy.effectiveDateValue}</strong>
-                            </div>
-                            <div>
-                                <span>{policy.updatedDateLabel}</span>
-                                <strong>{policy.updatedDateValue}</strong>
-                            </div>
-                            <div>
-                                <span>{policy.sections.contact.emailLabel}</span>
-                                <strong className="pdf-email">{policy.sections.contact.email}</strong>
-                            </div>
+            <div className="pdf-document">
+                <div className="pdf-legal-header">
+                    <div className="pdf-legal-brand">
+                        <img src="/teo-icon.png" alt="Teo" className="pdf-logo" />
+                        <div>
+                            <div className="pdf-org">TEO COACHING</div>
+                            <h1>{policy.title}</h1>
                         </div>
                     </div>
 
-                    <div className="pdf-summary-grid">
-                        {policy.commitments.map((item, index) => (
-                            <PrintPolicyCard
-                                key={item.title}
-                                title={item.title}
-                                description={item.description}
-                                tone={index === 1 ? "featured" : "default"}
-                            />
-                        ))}
+                    <div className="pdf-legal-meta">
+                        <p>
+                            <strong>{policy.effectiveDateLabel}:</strong> {policy.effectiveDateValue}
+                        </p>
+                        <p>
+                            <strong>{policy.updatedDateLabel}:</strong> {policy.updatedDateValue}
+                        </p>
+                        <p>
+                            <strong>{policy.sections.contact.emailLabel}:</strong> {policy.sections.contact.email}
+                        </p>
                     </div>
                 </div>
 
-                <div className="pdf-section">
+                <p className="pdf-legal-subtitle">{policy.subtitle}</p>
+
+                <section className="pdf-legal-section">
                     <h2>{policy.sections.introduction.title}</h2>
                     {policy.sections.introduction.paragraphs.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                     ))}
-                </div>
+                </section>
 
-                <div className="pdf-section">
+                <section className="pdf-legal-section">
                     <h2>{policy.sections.information.title}</h2>
                     <p>{policy.sections.information.intro}</p>
-                    <div className="pdf-grid pdf-grid-3">
+                    <ul className="pdf-legal-list">
                         {policy.sections.information.cards.map((item) => (
-                            <PrintPolicyCard key={item.title} title={item.title} description={item.description} />
+                            <li key={item.title}>
+                                <strong>{item.title}:</strong> {item.description}
+                            </li>
                         ))}
-                    </div>
-                </div>
-            </section>
+                    </ul>
+                </section>
 
-            <section className="pdf-page">
-                <div className="pdf-section">
+                <section className="pdf-legal-section">
                     <h2>{policy.sections.usage.title}</h2>
                     <p>{policy.sections.usage.intro}</p>
-                    <div className="pdf-grid pdf-grid-2">
+                    <ul className="pdf-legal-list">
                         {policy.sections.usage.cards.map((item) => (
-                            <PrintPolicyCard key={item.title} title={item.title} description={item.description} />
+                            <li key={item.title}>
+                                <strong>{item.title}:</strong> {item.description}
+                            </li>
                         ))}
-                    </div>
-                </div>
+                    </ul>
+                </section>
 
-                <div className="pdf-section">
-                    <div className="pdf-section-head">
-                        <div>
-                            <h2>{policy.sections.integrations.title}</h2>
-                            <p>{policy.sections.integrations.intro}</p>
-                        </div>
-                        <aside className="pdf-note">{policy.sections.integrations.note}</aside>
-                    </div>
-                    <div className="pdf-grid pdf-grid-2">
-                        {policy.sections.integrations.cards.map(({ featured, ...item }) => (
-                            <PrintPolicyCard
-                                key={item.title}
-                                title={`${item.title} · ${item.status}`}
-                                description={item.description}
-                                tone={featured ? "featured" : "default"}
-                            />
+                <section className="pdf-legal-section">
+                    <h2>{policy.sections.integrations.title}</h2>
+                    <p>{policy.sections.integrations.intro}</p>
+                    <p>{policy.sections.integrations.note}</p>
+                    <ul className="pdf-legal-list">
+                        {policy.sections.integrations.cards.map((item) => (
+                            <li key={item.title}>
+                                <strong>
+                                    {item.title} ({item.status}):
+                                </strong>{" "}
+                                {item.description}
+                            </li>
                         ))}
-                    </div>
-                    <div className="pdf-callout">{policy.sections.integrations.footer}</div>
-                </div>
-            </section>
+                    </ul>
+                    <p>{policy.sections.integrations.footer}</p>
+                </section>
 
-            <section className="pdf-page">
-                <div className="pdf-section">
+                <section className="pdf-legal-section">
                     <h2>{policy.sections.security.title}</h2>
                     <p>{policy.sections.security.intro}</p>
-                    <div className="pdf-grid pdf-grid-3">
+                    <ul className="pdf-legal-list">
                         {policy.sections.security.cards.map((item) => (
-                            <PrintPolicyCard key={item.title} title={item.title} description={item.description} />
+                            <li key={item.title}>
+                                <strong>{item.title}:</strong> {item.description}
+                            </li>
                         ))}
-                    </div>
-                </div>
+                    </ul>
+                </section>
 
-                <div className="pdf-section">
+                <section className="pdf-legal-section">
                     <h2>{policy.sections.rights.title}</h2>
                     <p>{policy.sections.rights.intro}</p>
-                    <div className="pdf-grid pdf-grid-2">
+                    <ul className="pdf-legal-list">
                         {policy.sections.rights.cards.map((item) => (
-                            <PrintPolicyCard key={item.title} title={item.title} description={item.description} />
+                            <li key={item.title}>
+                                <strong>{item.title}:</strong> {item.description}
+                            </li>
                         ))}
-                    </div>
-                    <div className="pdf-subtle">{policy.sections.rights.footer}</div>
-                </div>
+                    </ul>
+                    <p>{policy.sections.rights.footer}</p>
+                </section>
 
-                <div className="pdf-section">
+                <section className="pdf-legal-section">
                     <h2>{policy.sections.retention.title}</h2>
-                    <ul className="pdf-list">
+                    <ul className="pdf-legal-list">
                         {policy.sections.retention.items.map((item) => (
                             <li key={item}>{item}</li>
                         ))}
                     </ul>
-                </div>
+                </section>
 
-                <div className="pdf-grid pdf-grid-2">
-                    <div className="pdf-section pdf-section-compact">
-                        <h2>{policy.sections.children.title}</h2>
-                        <p>{policy.sections.children.body}</p>
-                    </div>
-                    <div className="pdf-section pdf-section-compact">
-                        <h2>{policy.sections.changes.title}</h2>
-                        <p>{policy.sections.changes.body}</p>
-                    </div>
-                </div>
+                <section className="pdf-legal-section">
+                    <h2>{policy.sections.children.title}</h2>
+                    <p>{policy.sections.children.body}</p>
+                </section>
 
-                <div className="pdf-section pdf-contact">
+                <section className="pdf-legal-section">
+                    <h2>{policy.sections.changes.title}</h2>
+                    <p>{policy.sections.changes.body}</p>
+                </section>
+
+                <section className="pdf-legal-section">
                     <h2>{policy.sections.contact.title}</h2>
                     <p>{policy.sections.contact.body}</p>
-                    <div className="pdf-contact-row">
-                        <span>{policy.sections.contact.emailLabel}</span>
-                        <strong>{policy.sections.contact.email}</strong>
-                    </div>
-                </div>
-            </section>
+                    <p>
+                        <strong>{policy.sections.contact.emailLabel}:</strong> {policy.sections.contact.email}
+                    </p>
+                </section>
+            </div>
         </div>
     );
 }
@@ -875,285 +841,255 @@ export function PrivacyContent() {
                             Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
                     }
 
-                    .pdf-page {
-                        display: contents;
-                    }
-
-                    .pdf-hero,
-                    .pdf-section,
-                    .pdf-card,
-                    .pdf-note,
-                    .pdf-callout,
-                    .pdf-subtle {
-                        break-inside: avoid;
-                    }
-
-                    .pdf-hero {
-                        position: relative;
-                        overflow: hidden;
-                        border: 1px solid rgba(249, 115, 22, 0.24);
-                        border-radius: 28px;
-                        padding: 28px;
-                        background:
-                            radial-gradient(circle at top left, rgba(249, 115, 22, 0.14), transparent 36%),
-                            radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.08), transparent 34%),
-                            #fffdfb;
-                        box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
-                    }
-
-                    .pdf-badge {
-                        display: inline-flex;
-                        align-items: center;
-                        border-radius: 999px;
-                        padding: 7px 12px;
-                        background: rgba(249, 115, 22, 0.1);
-                        border: 1px solid rgba(249, 115, 22, 0.14);
-                        color: #ea580c;
-                        font-size: 11px;
-                        font-weight: 700;
-                        letter-spacing: 0.08em;
-                        text-transform: uppercase;
-                    }
-
-                    .pdf-hero-grid {
-                        display: grid;
-                        grid-template-columns: minmax(0, 1fr) 240px;
-                        gap: 20px;
-                        margin-top: 18px;
-                        align-items: start;
-                    }
-
-                    .pdf-brand {
-                        display: grid;
-                        grid-template-columns: 72px minmax(0, 1fr);
-                        gap: 16px;
-                        align-items: center;
+                    .pdf-document {
+                        color: #111111;
+                        font-size: 11pt;
+                        line-height: 1.55;
                     }
 
                     .pdf-logo {
-                        width: 72px;
-                        height: 72px;
-                        border-radius: 20px;
+                        width: 34px;
+                        height: 34px;
+                        border-radius: 8px;
                         display: block;
-                        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
                     }
 
-                    .pdf-brand h1 {
+                    .pdf-legal-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 24px;
                         margin: 0;
-                        font-size: 34px;
-                        line-height: 1.04;
-                        letter-spacing: -0.03em;
-                        font-weight: 800;
-                        color: #0f172a;
+                        padding-bottom: 14px;
+                        border-bottom: 1px solid #bdbdbd;
+                        break-inside: avoid;
                     }
 
-                    .pdf-brand p {
-                        margin: 8px 0 0;
-                        font-size: 13px;
-                        line-height: 1.6;
-                        color: #475569;
+                    .pdf-legal-brand {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 12px;
                     }
 
-                    .pdf-meta {
-                        border: 1px solid #e2e8f0;
-                        background: rgba(255, 255, 255, 0.88);
-                        border-radius: 22px;
-                        padding: 16px 18px;
-                    }
-
-                    .pdf-meta div + div {
-                        margin-top: 13px;
-                        padding-top: 13px;
-                        border-top: 1px solid #e2e8f0;
-                    }
-
-                    .pdf-meta span {
-                        display: block;
-                        font-size: 10px;
-                        line-height: 1.2;
-                        letter-spacing: 0.08em;
+                    .pdf-org {
+                        margin: 0 0 6px;
+                        font-size: 9pt;
+                        font-weight: 700;
+                        letter-spacing: 0.12em;
                         text-transform: uppercase;
-                        color: #64748b;
-                        font-weight: 700;
                     }
 
-                    .pdf-meta strong {
-                        display: block;
-                        margin-top: 4px;
-                        font-size: 15px;
-                        line-height: 1.35;
-                        color: #0f172a;
-                        font-weight: 700;
-                    }
-
-                    .pdf-meta .pdf-email {
-                        font-size: 13px;
-                        color: #ea580c;
-                    }
-
-                    .pdf-summary-grid,
-                    .pdf-grid {
-                        display: grid;
-                        gap: 14px;
-                    }
-
-                    .pdf-summary-grid {
-                        grid-template-columns: repeat(3, minmax(0, 1fr));
-                        margin-top: 18px;
-                    }
-
-                    .pdf-grid-2 {
-                        grid-template-columns: repeat(2, minmax(0, 1fr));
-                    }
-
-                    .pdf-grid-3 {
-                        grid-template-columns: repeat(3, minmax(0, 1fr));
-                    }
-
-                    .pdf-card {
-                        border-radius: 22px;
-                        border: 1px solid rgba(226, 232, 240, 0.9);
-                        background: rgba(255, 255, 255, 0.94);
-                        padding: 16px 18px;
-                        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
-                    }
-
-                    .pdf-card-featured {
-                        border-color: rgba(249, 115, 22, 0.22);
-                        background: linear-gradient(180deg, rgba(255, 247, 237, 0.98), rgba(255, 255, 255, 0.98));
-                    }
-
-                    .pdf-card h3 {
+                    .pdf-legal-header h1 {
                         margin: 0;
-                        font-size: 13px;
-                        line-height: 1.4;
+                        font-size: 22pt;
+                        line-height: 1.12;
                         font-weight: 700;
-                        color: #0f172a;
                     }
 
-                    .pdf-card p {
-                        margin: 8px 0 0;
-                        font-size: 11px;
-                        line-height: 1.65;
-                        color: #475569;
+                    .pdf-legal-meta {
+                        min-width: 220px;
+                        font-size: 10pt;
                     }
 
-                    .pdf-section {
+                    .pdf-legal-meta p {
+                        margin: 0 0 6px;
+                    }
+
+                    .pdf-legal-subtitle {
+                        margin: 14px 0 18px;
+                        font-size: 11pt;
+                    }
+
+                    .pdf-legal-section {
                         margin-top: 16px;
-                        border-radius: 24px;
-                        border: 1px solid rgba(226, 232, 240, 0.92);
-                        background: #ffffff;
-                        padding: 18px 20px 20px;
-                        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+                        break-inside: avoid;
                     }
 
-                    .pdf-section-compact {
-                        margin-top: 16px;
+                    .pdf-legal-section h2 {
+                        margin: 0 0 8px;
+                        font-size: 13pt;
+                        font-weight: 700;
                     }
 
-                    .pdf-section h2 {
-                        margin: 0;
-                        font-size: 21px;
-                        line-height: 1.25;
-                        font-weight: 800;
-                        letter-spacing: -0.02em;
-                        color: #0f172a;
+                    .pdf-legal-section p {
+                        margin: 0 0 8px;
                     }
 
-                    .pdf-section p {
-                        margin: 10px 0 0;
-                        font-size: 12px;
-                        line-height: 1.72;
-                        color: #475569;
-                    }
-
-                    .pdf-section-head {
-                        display: grid;
-                        grid-template-columns: minmax(0, 1fr) 210px;
-                        gap: 16px;
-                        align-items: start;
-                    }
-
-                    .pdf-note {
-                        border-radius: 18px;
-                        border: 1px solid rgba(249, 115, 22, 0.16);
-                        background: rgba(249, 115, 22, 0.08);
-                        padding: 12px 14px;
-                        font-size: 11px;
-                        line-height: 1.65;
-                        color: #c2410c;
-                    }
-
-                    .pdf-callout,
-                    .pdf-subtle {
-                        margin-top: 14px;
-                        border-radius: 18px;
-                        padding: 14px 16px;
-                        font-size: 11px;
-                        line-height: 1.7;
-                    }
-
-                    .pdf-callout {
-                        background: #0f172a;
-                        color: #e2e8f0;
-                    }
-
-                    .pdf-subtle {
-                        border: 1px solid rgba(226, 232, 240, 0.92);
-                        background: #f8fafc;
-                        color: #475569;
-                    }
-
-                    .pdf-list {
-                        margin: 12px 0 0;
+                    .pdf-legal-list {
+                        margin: 6px 0 0 18px;
                         padding: 0;
-                        list-style: none;
                     }
 
-                    .pdf-list li {
-                        position: relative;
-                        margin-top: 10px;
-                        padding-left: 16px;
-                        font-size: 12px;
-                        line-height: 1.72;
-                        color: #475569;
+                    .pdf-legal-list li {
+                        margin: 0 0 6px;
                     }
 
-                    .pdf-list li::before {
-                        content: "";
-                        position: absolute;
-                        left: 0;
-                        top: 0.55em;
-                        width: 7px;
-                        height: 7px;
-                        border-radius: 999px;
-                        background: #f97316;
+                    @media print {
+                        .pdf-legal-header {
+                            page-break-inside: avoid;
+                        }
+                    }
+
+                    @media print and (max-width: 0px) {
+                        .pdf-legal-header {
+                            display: block;
+                        }
+                    }
+
+                    .pdf-legal-meta strong,
+                    .pdf-legal-list strong {
+                        font-weight: 700;
+                    }
+
+                    .pdf-legal-header,
+                    .pdf-legal-section {
+                        color: #111111;
+                    }
+
+                    .pdf-legal-meta,
+                    .pdf-legal-subtitle,
+                    .pdf-legal-section p,
+                    .pdf-legal-list {
+                        color: #111111;
+                    }
+
+                    .pdf-legal-header + .pdf-legal-subtitle {
+                        break-inside: avoid;
+                    }
+
+                    @media print {
+                        .pdf-document {
+                            background: #ffffff;
+                        }
+
+                        .pdf-legal-header,
+                        .pdf-legal-section,
+                        .pdf-legal-subtitle {
+                            background: transparent;
+                            border: 0;
+                            box-shadow: none;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-meta p:last-child,
+                        .pdf-legal-section p:last-child,
+                        .pdf-legal-list li:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-header {
+                            align-items: flex-start;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-header {
+                            gap: 20px;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-brand {
+                            max-width: 70%;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-meta {
+                            text-align: left;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-section + .pdf-legal-section {
+                            border-top: 1px solid #d4d4d4;
+                            padding-top: 12px;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-section:first-of-type {
+                            border-top: 0;
+                            padding-top: 0;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-header {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-document a {
+                            color: inherit;
+                            text-decoration: none;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-document strong {
+                            color: inherit;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-document {
+                            widows: 3;
+                            orphans: 3;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-section h2,
+                        .pdf-legal-section ul,
+                        .pdf-legal-section p {
+                            break-inside: avoid;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-meta {
+                            white-space: normal;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-logo {
+                            image-rendering: auto;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-document {
+                            max-width: none;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-header {
+                            min-height: 0;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-header h1 {
+                            max-width: 520px;
+                        }
+                    }
+
+                    @media print {
+                        .pdf-legal-section {
+                            padding: 0;
+                            margin-top: 14px;
+                        }
                     }
 
                     .pdf-contact-row {
                         margin-top: 14px;
-                        border-radius: 18px;
-                        border: 1px solid rgba(249, 115, 22, 0.18);
-                        background: rgba(255, 247, 237, 0.94);
-                        padding: 14px 16px;
-                    }
-
-                    .pdf-contact-row span {
-                        display: block;
-                        font-size: 10px;
-                        line-height: 1.2;
-                        letter-spacing: 0.08em;
-                        text-transform: uppercase;
-                        color: #64748b;
-                        font-weight: 700;
-                    }
-
-                    .pdf-contact-row strong {
-                        display: block;
-                        margin-top: 5px;
-                        font-size: 16px;
-                        line-height: 1.4;
-                        color: #0f172a;
                     }
                 }
             `}</style>
