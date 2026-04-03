@@ -37,7 +37,7 @@ export function Header() {
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
                         <Image
-                            src="/assets/screenshots/icon_backup.png"
+                            src="/teo-icon.png"
                             alt="Teo"
                             width={32}
                             height={32}

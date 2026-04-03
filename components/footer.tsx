@@ -1,10 +1,8 @@
 "use client";
 
 import Image from "next/image";
-
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
-import { Twitter, Instagram, Github } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 
 export function Footer() {
@@ -16,7 +14,7 @@ export function Footer() {
                     <div className="col-span-2">
                         <Link href="/" className="flex items-center gap-2">
                             <Image
-                                src="/assets/screenshots/icon_backup.png"
+                                src="/teo-icon.png"
                                 alt="Teo"
                                 width={32}
                                 height={32}
@@ -32,9 +30,9 @@ export function Footer() {
                     <div>
                         <h3 className="mb-4 text-sm font-semibold text-ink">{t("footer.product")}</h3>
                         <ul className="space-y-3 text-sm text-slate-500">
-                            <li><Link href="#features" className="hover:text-primary">{t("nav.features")}</Link></li>
-                            <li><Link href="#mission" className="hover:text-primary">{t("mission.titleHighlight")}</Link></li>
-                            <li><Link href="#faq" className="hover:text-primary">{t("nav.faq")}</Link></li>
+                            <li><Link href="/#features" className="hover:text-primary">{t("nav.features")}</Link></li>
+                            <li><Link href="/#mission" className="hover:text-primary">{t("mission.titleHighlight")}</Link></li>
+                            <li><Link href="/#faq" className="hover:text-primary">{t("nav.faq")}</Link></li>
                         </ul>
                     </div>
 
